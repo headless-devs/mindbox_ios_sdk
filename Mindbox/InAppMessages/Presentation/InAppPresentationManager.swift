@@ -88,28 +88,54 @@ final class InAppPresentationManager: InAppPresentationManagerProtocol {
         onPresentationCompleted: @escaping () -> Void,
         onError: @escaping (InAppPresentationError) -> Void
     ) {
-        guard let inAppWindow = makeInAppMessageWindow() else {
-            Logger.common(message: "InappWindow creating failed")
+        guard let keyWindow = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else {
+            Logger.common(message: "KeyWindow not found")
             onError(.failedToLoadWindow)
             return
         }
-        
+
         Logger.common(message: "InappWindow created Successfully")
 
-        let close: () -> Void = { [weak self] in
-            self?.onClose(inApp: inAppUIModel, onPresentationCompleted)
+        let snackbarView = SnackbarView(inAppUIModel: inAppUIModel)
+        keyWindow.addSubview(snackbarView)
+        snackbarView.translatesAutoresizingMaskIntoConstraints = false
+
+        // Получение высоты картинки
+        let image = UIImage(named: "Group2")!
+        let imageHeight = image.size.height
+
+        // Получение 1/3 высоты экрана
+        let screenHeight = UIScreen.main.bounds.height
+        let oneThirdScreenHeight = screenHeight / 3.0
+
+        // Определение, соответствует ли высота картинки условию
+        let finalHeight = (imageHeight < oneThirdScreenHeight) ? imageHeight : oneThirdScreenHeight
+
+        let position: SnackbarPosition = .top // Установка позиции
+
+        let edgeConstraint: NSLayoutConstraint
+
+        switch position {
+        case .top:
+            edgeConstraint = snackbarView.topAnchor.constraint(equalTo: keyWindow.topAnchor, constant: -finalHeight)
+        case .bottom:
+            edgeConstraint = snackbarView.bottomAnchor.constraint(equalTo: keyWindow.bottomAnchor, constant: finalHeight)
         }
-        let inAppViewController = InAppMessageViewController(
-            inAppUIModel: inAppUIModel,
-            onPresented: { [weak self] in
-                self?.onPresented(inApp: inAppUIModel, onPresented)
-            },
-            onTapAction: { [weak self] in
-                self?.onTapAction(inApp: inAppUIModel, onTap: onTapAction, close: close)
-            },
-            onClose: close
-        )
-        inAppWindow.rootViewController = inAppViewController
+
+        NSLayoutConstraint.activate([
+            snackbarView.leadingAnchor.constraint(equalTo: keyWindow.leadingAnchor),
+            snackbarView.trailingAnchor.constraint(equalTo: keyWindow.trailingAnchor),
+            edgeConstraint,
+            snackbarView.heightAnchor.constraint(equalToConstant: finalHeight)
+        ])
+
+        keyWindow.layoutIfNeeded()
+
+        UIView.animate(withDuration: 1.0) {
+            edgeConstraint.constant = 0
+            keyWindow.layoutIfNeeded()
+        }
+
         Logger.common(message: "In-app with id \(inAppUIModel.inAppId) presented", level: .info, category: .inAppMessages)
     }
 
