@@ -35,6 +35,12 @@ enum InAppPresentationError {
     case failedToLoadWindow
 }
 
+enum InAppPresentationType {
+    case modal
+    case topSnackbar
+    case bottomSnackbar
+}
+
 typealias InAppMessageTapAction = (_ tapLink: URL?, _ payload: String) -> Void
 
 /// Prepares UI for in-app messages and shows them
@@ -93,50 +99,25 @@ final class InAppPresentationManager: InAppPresentationManagerProtocol {
             onError(.failedToLoadWindow)
             return
         }
-
+    
         Logger.common(message: "InappWindow created Successfully")
-
-        let snackbarView = SnackbarView(inAppUIModel: inAppUIModel)
-        keyWindow.addSubview(snackbarView)
-        snackbarView.translatesAutoresizingMaskIntoConstraints = false
-
-        // Получение высоты картинки
-        let image = UIImage(named: "Group2")!
-        let imageHeight = image.size.height
-
-        // Получение 1/3 высоты экрана
-        let screenHeight = UIScreen.main.bounds.height
-        let oneThirdScreenHeight = screenHeight / 3.0
-
-        // Определение, соответствует ли высота картинки условию
-        let finalHeight = (imageHeight < oneThirdScreenHeight) ? imageHeight : oneThirdScreenHeight
-
-        let position: SnackbarPosition = .top // Установка позиции
-
-        let edgeConstraint: NSLayoutConstraint
-
-        switch position {
-        case .top:
-            edgeConstraint = snackbarView.topAnchor.constraint(equalTo: keyWindow.topAnchor, constant: -finalHeight)
-        case .bottom:
-            edgeConstraint = snackbarView.bottomAnchor.constraint(equalTo: keyWindow.bottomAnchor, constant: finalHeight)
-        }
-
-        NSLayoutConstraint.activate([
-            snackbarView.leadingAnchor.constraint(equalTo: keyWindow.leadingAnchor),
-            snackbarView.trailingAnchor.constraint(equalTo: keyWindow.trailingAnchor),
-            edgeConstraint,
-            snackbarView.heightAnchor.constraint(equalToConstant: finalHeight)
-        ])
-
-        keyWindow.layoutIfNeeded()
-
-        UIView.animate(withDuration: 1.0) {
-            edgeConstraint.constant = 0
-            keyWindow.layoutIfNeeded()
-        }
+        let viewFactory = factory(for: .bottomSnackbar)
+        let viewController = viewFactory.create(inAppUIModel: inAppUIModel)
+        keyWindow.rootViewController?.addChild(viewController)
+        keyWindow.rootViewController?.view.addSubview(viewController.view)
 
         Logger.common(message: "In-app with id \(inAppUIModel.inAppId) presented", level: .info, category: .inAppMessages)
+    }
+    
+    private func factory(for type: InAppPresentationType) -> InAppPresentationFactoryProtocol {
+        switch type {
+        case .modal:
+            return ModalViewFactory()
+        case .topSnackbar:
+            return TopSnackbarViewFactory()
+        case .bottomSnackbar:
+            return BottomSnackbarViewFactory()
+        }
     }
 
     private func onPresented(inApp: InAppMessageUIModel, _ completion: @escaping () -> Void) {
