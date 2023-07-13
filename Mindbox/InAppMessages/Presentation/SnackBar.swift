@@ -15,12 +15,16 @@ enum SnackbarType {
 class SnackbarView: UIView {
     let imageView: UIImageView
     let crossView: CrossView
+    
+    private let onClose: () -> Void
 
     var swipeDirection: UISwipeGestureRecognizer.Direction = .down // значение по умолчанию
 
-    init(inAppUIModel: InAppMessageUIModel) {
-        self.imageView = UIImageView(image: UIImage(named: "Group2")!)
+    init(image: UIImage,
+         onClose: @escaping () -> Void) {
+        self.imageView = UIImageView(image: image)
         self.crossView = CrossView(lineColor: .white, lineWidth: 2.0, crossSize: 20.0)
+        self.onClose = onClose
         super.init(frame: .zero)
         
         self.imageView.contentMode = .scaleAspectFill
@@ -65,8 +69,9 @@ class SnackbarView: UIView {
                 UIView.animate(withDuration: 0.2, animations: {
                     self.alpha = 0
                     self.transform = CGAffineTransform(translationX: 0, y: self.swipeDirection == .up ? -self.frame.height : self.frame.height)
-                }) { _ in
-                    self.removeFromSuperview()
+                }) { [weak self] _ in
+                    self?.onClose()
+//                    self.removeFromSuperview()
                 }
             } else {
                 UIView.animate(withDuration: 0.2) {
@@ -85,15 +90,27 @@ class SnackbarView: UIView {
 }
 
 class SnackbarViewController: UIViewController {
-
-    var snackbarView: SnackbarView!
+    
     var inAppUIModel: InAppMessageUIModel!
-    var edgeConstraint: NSLayoutConstraint?
     var type: SnackbarType = .bottom
 
-    init(with inAppUIModel: InAppMessageUIModel, type: SnackbarType) {
+    private var snackbarView: SnackbarView!
+    private var edgeConstraint: NSLayoutConstraint?
+    
+    private let onPresented: () -> Void
+    private let onClose: () -> Void
+    private let onTapAction: () -> Void
+
+    init(with inAppUIModel: InAppMessageUIModel,
+         type: SnackbarType,
+         onPresented: @escaping () -> Void,
+         onTapAction: @escaping () -> Void,
+         onClose: @escaping () -> Void) {
         self.inAppUIModel = inAppUIModel
         self.type = type
+        self.onPresented = onPresented
+        self.onClose = onClose
+        self.onTapAction = onTapAction
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -109,7 +126,7 @@ class SnackbarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.snackbarView = SnackbarView(inAppUIModel: inAppUIModel)
+        self.snackbarView = SnackbarView(image: inAppUIModel.image, onClose: onClose)
         snackbarView.translatesAutoresizingMaskIntoConstraints = false
         snackbarView.isUserInteractionEnabled = true
         let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapImage))
@@ -117,10 +134,8 @@ class SnackbarViewController: UIViewController {
         
         view.addSubview(snackbarView)
         
-        // Setup constraints
         setupConstraints()
     }
-
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -146,18 +161,16 @@ class SnackbarViewController: UIViewController {
         case .bottom:
             setupBottomConstraint(with: finalHeight)
         }
-        
-        
     }
     
     private func setupTopConstraint(with height: CGFloat) {
-//        snackbarView.swipeDirection = .up
+        snackbarView.swipeDirection = .up
         edgeConstraint = snackbarView.topAnchor.constraint(equalTo: view.topAnchor, constant: height)
         edgeConstraint?.isActive = true
     }
     
     private func setupBottomConstraint(with height: CGFloat) {
-//        snackbarView.swipeDirection = .down
+        snackbarView.swipeDirection = .down
         edgeConstraint = snackbarView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: height)
         edgeConstraint?.isActive = true
     }
@@ -172,6 +185,6 @@ class SnackbarViewController: UIViewController {
     }
 
     @objc private func onTapImage() {
-        // onTapAction()
+         onTapAction()
     }
 }

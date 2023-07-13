@@ -101,15 +101,27 @@ final class InAppPresentationManager: InAppPresentationManagerProtocol {
         }
     
         Logger.common(message: "InappWindow created Successfully")
+        
+        let close: () -> Void = { [weak self] in
+            self?.onClose(inApp: inAppUIModel, onPresentationCompleted)
+        }
+        
         let viewFactory = factory(for: .bottomSnackbar)
-        let viewController = viewFactory.create(inAppUIModel: inAppUIModel)
+        let viewController = viewFactory.create(inAppUIModel: inAppUIModel) { [weak self] in
+            self?.onPresented(inApp: inAppUIModel, onPresented)
+        } onTapAction: { [weak self] in
+            self?.onTapAction(inApp: inAppUIModel, onTap: onTapAction, close: close)
+        } onClose: {
+            close()
+        }
+
         keyWindow.rootViewController?.addChild(viewController)
         keyWindow.rootViewController?.view.addSubview(viewController.view)
 
         Logger.common(message: "In-app with id \(inAppUIModel.inAppId) presented", level: .info, category: .inAppMessages)
     }
     
-    private func factory(for type: InAppPresentationType) -> InAppPresentationFactoryProtocol {
+    private func factory(for type: InAppPresentationType) -> InappViewFactory {
         switch type {
         case .modal:
             return ModalViewFactory()
