@@ -13,11 +13,7 @@ class BottomSnackbarViewFactory: InappViewFactory {
     var viewController: UIViewController?
     
     func create(inAppUIModel: InAppMessageUIModel, onPresented: @escaping () -> Void, onTapAction: @escaping () -> Void, onClose: @escaping () -> Void) -> UIViewController {
-        let viewController = SnackbarViewController(with: inAppUIModel,
-                                                    type: .bottom,
-                                                    onPresented: onPresented,
-                                                    onTapAction: onTapAction,
-                                                    onClose: onClose)
+        let viewController = BottomSnackbarViewController(with: inAppUIModel, onPresented: onPresented, onTapAction: onTapAction, onClose: onClose)
         self.viewController = viewController
         return viewController
     }
@@ -28,11 +24,7 @@ class TopSnackbarViewFactory: InappViewFactory {
     var viewController: UIViewController?
     
     func create(inAppUIModel: InAppMessageUIModel, onPresented: @escaping () -> Void, onTapAction: @escaping () -> Void, onClose: @escaping () -> Void) -> UIViewController {
-        let viewController = SnackbarViewController(with: inAppUIModel,
-                                                    type: .top,
-                                                    onPresented: onPresented,
-                                                    onTapAction: onTapAction,
-                                                    onClose: onClose)
+        let viewController = TopSnackbarViewController(with: inAppUIModel, onPresented: onPresented, onTapAction: onTapAction, onClose: onClose)
         self.viewController = viewController
         return viewController
     }

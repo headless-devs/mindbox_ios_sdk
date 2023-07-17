@@ -54,6 +54,7 @@ final class InAppPresentationManager: InAppPresentationManagerProtocol {
 
     private let inAppTracker: InAppMessagesTrackerProtocol
     private var inAppWindow: UIWindow?
+    private var presentedVC: UIViewController?
 
     func present(
         inAppFormData: InAppFormData,
@@ -106,7 +107,7 @@ final class InAppPresentationManager: InAppPresentationManagerProtocol {
             self?.onClose(inApp: inAppUIModel, onPresentationCompleted)
         }
         
-        let viewFactory = factory(for: .bottomSnackbar)
+        let viewFactory = factory(for: .topSnackbar)
         let viewController = viewFactory.create(inAppUIModel: inAppUIModel) { [weak self] in
             self?.onPresented(inApp: inAppUIModel, onPresented)
         } onTapAction: { [weak self] in
@@ -114,7 +115,8 @@ final class InAppPresentationManager: InAppPresentationManagerProtocol {
         } onClose: {
             close()
         }
-
+        
+        presentedVC = viewController
         keyWindow.rootViewController?.addChild(viewController)
         keyWindow.rootViewController?.view.addSubview(viewController.view)
 
@@ -171,9 +173,14 @@ final class InAppPresentationManager: InAppPresentationManagerProtocol {
     }
 
     private func onClose(inApp: InAppMessageUIModel, _ completion: @escaping () -> Void) {
+        // If snackbar then
+        presentedVC?.view.removeFromSuperview()
+        presentedVC?.removeFromParent()
+        presentedVC = nil
+        
         Logger.common(message: "InApp presentation dismissed", level: .debug, category: .inAppMessages)
-        inAppWindow?.isHidden = true
-        inAppWindow?.rootViewController = nil
+//        inAppWindow?.isHidden = true
+//        inAppWindow?.rootViewController = nil
         completion()
     }
 

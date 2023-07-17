@@ -310,7 +310,8 @@
 		F31801FB2A386A5B0021774C /* InappConfigResponseSettingsInvalid.json in Resources */ = {isa = PBXBuildFile; fileRef = F31801FA2A386A5B0021774C /* InappConfigResponseSettingsInvalid.json */; };
 		F31801FE2A386BE60021774C /* InappConfigResponseAbtestsInvalid.json in Resources */ = {isa = PBXBuildFile; fileRef = F31801FC2A386BE60021774C /* InappConfigResponseAbtestsInvalid.json */; };
 		F31801FF2A386BE60021774C /* InappConfigResponseMonitoringInvalid.json in Resources */ = {isa = PBXBuildFile; fileRef = F31801FD2A386BE60021774C /* InappConfigResponseMonitoringInvalid.json */; };
-		F3550C282A5EB55A00842583 /* SnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3550C272A5EB55A00842583 /* SnackBar.swift */; };
+		F3482EAB2A6510BD002A41EC /* SnackBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482EAA2A6510BD002A41EC /* SnackBarViewController.swift */; };
+		F3550C282A5EB55A00842583 /* SnackBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3550C272A5EB55A00842583 /* SnackBarView.swift */; };
 		F3550C352A5FE4A600842583 /* SnackbarViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3550C332A5FE4A600842583 /* SnackbarViewFactory.swift */; };
 		F3550C362A5FE4A600842583 /* InappViewFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3550C342A5FE4A600842583 /* InappViewFactoryProtocol.swift */; };
 		F3550C382A5FE4CB00842583 /* ModalViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3550C372A5FE4CB00842583 /* ModalViewFactory.swift */; };
@@ -722,7 +723,8 @@
 		F31801FA2A386A5B0021774C /* InappConfigResponseSettingsInvalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InappConfigResponseSettingsInvalid.json; sourceTree = "<group>"; };
 		F31801FC2A386BE60021774C /* InappConfigResponseAbtestsInvalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InappConfigResponseAbtestsInvalid.json; sourceTree = "<group>"; };
 		F31801FD2A386BE60021774C /* InappConfigResponseMonitoringInvalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InappConfigResponseMonitoringInvalid.json; sourceTree = "<group>"; };
-		F3550C272A5EB55A00842583 /* SnackBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnackBar.swift; sourceTree = "<group>"; };
+		F3482EAA2A6510BD002A41EC /* SnackBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBarViewController.swift; sourceTree = "<group>"; };
+		F3550C272A5EB55A00842583 /* SnackBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnackBarView.swift; sourceTree = "<group>"; };
 		F3550C332A5FE4A600842583 /* SnackbarViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnackbarViewFactory.swift; sourceTree = "<group>"; };
 		F3550C342A5FE4A600842583 /* InappViewFactoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InappViewFactoryProtocol.swift; sourceTree = "<group>"; };
 		F3550C372A5FE4CB00842583 /* ModalViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewFactory.swift; sourceTree = "<group>"; };
@@ -1491,7 +1493,7 @@
 		9B24FAB228C74BF200F10B5D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				F3550C272A5EB55A00842583 /* SnackBar.swift */,
+				F3482EA92A6510AC002A41EC /* SnackBar */,
 				F3550C262A5EB54600842583 /* InappViewFactory */,
 				9B4F9DFC28D088B4002C9CF0 /* Views */,
 				9B4F9DFA28D088AE002C9CF0 /* InAppMessageViewController.swift */,
@@ -1873,6 +1875,15 @@
 				F31801F72A38649D0021774C /* InappConfigResponseValid.json */,
 			);
 			path = ConfigResponse;
+			sourceTree = "<group>";
+		};
+		F3482EA92A6510AC002A41EC /* SnackBar */ = {
+			isa = PBXGroup;
+			children = (
+				F3550C272A5EB55A00842583 /* SnackBarView.swift */,
+				F3482EAA2A6510BD002A41EC /* SnackBarViewController.swift */,
+			);
+			path = SnackBar;
 			sourceTree = "<group>";
 		};
 		F3550C262A5EB54600842583 /* InappViewFactory */ = {
@@ -2366,7 +2377,7 @@
 				337A473E265528B5000DC613 /* MBDate.swift in Sources */,
 				F3A8B99E2A3A4FD600E9C055 /* ABTestValidator.swift in Sources */,
 				334F3AE0264C199900A6AC00 /* ViewProductCategoryRequest.swift in Sources */,
-				F3550C282A5EB55A00842583 /* SnackBar.swift in Sources */,
+				F3550C282A5EB55A00842583 /* SnackBarView.swift in Sources */,
 				A1D23AF029DE082E00A75179 /* InAppProductSegmentResponse.swift in Sources */,
 				A1D017EE2976CC4000CD9F99 /* AndTargeting.swift in Sources */,
 				6FDD1453266F7C8B00A50C35 /* PromotionResponse.swift in Sources */,
@@ -2513,6 +2524,7 @@
 				A11FBE8929DD76BF00F5FB7B /* InAppMessagesEventSender.swift in Sources */,
 				33072F422664CB81001F1AB2 /* PromoCodeResponse.swift in Sources */,
 				339ACE50262DAC74003590D2 /* CustomEvent.swift in Sources */,
+				F3482EAB2A6510BD002A41EC /* SnackBarViewController.swift in Sources */,
 				314B390025AEE96F00E947B9 /* CoreController.swift in Sources */,
 				84B625E425C988FA00AB6228 /* URLValidator.swift in Sources */,
 				843DAA5C26087F3D00CAC489 /* DependencyContainer.swift in Sources */,
@@ -2859,6 +2871,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Mindbox/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2887,6 +2900,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Mindbox/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2950,7 +2964,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MindboxNotifications/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2978,7 +2992,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MindboxNotifications/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3048,7 +3062,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Mindbox. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3078,7 +3092,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Mindbox. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
