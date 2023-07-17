@@ -19,8 +19,8 @@ class SnackbarViewController: UIViewController {
     let onTapAction: () -> Void
     
     enum Constants {
-        static let crossViewVerticalOffsetPercent: CGFloat = 5
-        static let crossViewHorizontalOffsetPercent: CGFloat = 94
+        static let crossViewVerticalOffsetPercent: CGFloat = 3
+        static let crossViewHorizontalOffsetPercent: CGFloat = 3
         static let animationDuration: TimeInterval = 0.5
         static let screenPart: CGFloat = 3.0
         static let oneThirdScreenHeight: CGFloat = UIScreen.main.bounds.height / Constants.screenPart
