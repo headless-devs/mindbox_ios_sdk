@@ -313,6 +313,7 @@
 		F3482F212A65DC2C002A41EC /* URLInappMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F202A65DC2C002A41EC /* URLInappMessageDelegate.swift */; };
 		F3482F232A65DC37002A41EC /* InAppMessagesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F222A65DC37002A41EC /* InAppMessagesDelegate.swift */; };
 		F3482F2A2A65DCFC002A41EC /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F292A65DCFC002A41EC /* String+Extensions.swift */; };
+		F37613C32A66929C009F2EE4 /* CrossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37613C22A66929C009F2EE4 /* CrossView.swift */; };
 		F397EEAD2A4456C300D48CEC /* ProtocolError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F397EEAC2A4456C300D48CEC /* ProtocolError.swift */; };
 		F397EEAF2A4456FD00D48CEC /* MindboxError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F397EEAE2A4456FD00D48CEC /* MindboxError.swift */; };
 		F397EEB12A44571300D48CEC /* UnknownDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F397EEB02A44571300D48CEC /* UnknownDecodable.swift */; };
@@ -681,6 +682,7 @@
 		F3482F202A65DC2C002A41EC /* URLInappMessageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLInappMessageDelegate.swift; sourceTree = "<group>"; };
 		F3482F222A65DC37002A41EC /* InAppMessagesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppMessagesDelegate.swift; sourceTree = "<group>"; };
 		F3482F292A65DCFC002A41EC /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		F37613C22A66929C009F2EE4 /* CrossView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossView.swift; sourceTree = "<group>"; };
 		F397EEAC2A4456C300D48CEC /* ProtocolError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolError.swift; sourceTree = "<group>"; };
 		F397EEAE2A4456FD00D48CEC /* MindboxError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindboxError.swift; sourceTree = "<group>"; };
 		F397EEB02A44571300D48CEC /* UnknownDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknownDecodable.swift; sourceTree = "<group>"; };
@@ -1394,8 +1396,8 @@
 		9B24FAB228C74BF200F10B5D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				F37613C52A6695C0009F2EE4 /* Manager */,
 				9B4F9DFC28D088B4002C9CF0 /* Views */,
-				9B4F9DFA28D088AE002C9CF0 /* InAppMessageViewController.swift */,
 				9B24FAA928C74B6A00F10B5D /* InAppPresentationManager.swift */,
 			);
 			path = Presentation;
@@ -1434,7 +1436,9 @@
 		9B4F9DFC28D088B4002C9CF0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9B4F9DFD28D088B4002C9CF0 /* InAppImageOnlyView.swift */,
+				F37613C92A6695E4009F2EE4 /* ViewFactory */,
+				F37613C42A6692DB009F2EE4 /* ModalView */,
+				F37613C12A669295009F2EE4 /* CommonViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1781,6 +1785,61 @@
 				F3482F182A65DBBD002A41EC /* MindboxPayloadCopierDelegate.swift */,
 			);
 			path = CommonProtocols;
+			sourceTree = "<group>";
+		};
+		F37613C12A669295009F2EE4 /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				9B4F9DFD28D088B4002C9CF0 /* InAppImageOnlyView.swift */,
+				F37613C22A66929C009F2EE4 /* CrossView.swift */,
+			);
+			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		F37613C42A6692DB009F2EE4 /* ModalView */ = {
+			isa = PBXGroup;
+			children = (
+				9B4F9DFA28D088AE002C9CF0 /* InAppMessageViewController.swift */,
+			);
+			path = ModalView;
+			sourceTree = "<group>";
+		};
+		F37613C52A6695C0009F2EE4 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F37613C62A6695CD009F2EE4 /* UseCases */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		F37613C62A6695CD009F2EE4 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				F37613C72A6695D2009F2EE4 /* PresentationDisplayUseCase */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		F37613C72A6695D2009F2EE4 /* PresentationDisplayUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				F37613C82A6695DC009F2EE4 /* Strategy */,
+			);
+			path = PresentationDisplayUseCase;
+			sourceTree = "<group>";
+		};
+		F37613C82A6695DC009F2EE4 /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Strategy;
+			sourceTree = "<group>";
+		};
+		F37613C92A6695E4009F2EE4 /* ViewFactory */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewFactory;
 			sourceTree = "<group>";
 		};
 		F397EEAB2A4456A900D48CEC /* MindboxError */ = {
@@ -2273,6 +2332,7 @@
 				A1A916E129C9053200D59D9E /* CategoryIDInChecker.swift in Sources */,
 				9B4F9DF228D088A0002C9CF0 /* InAppsCheckRequest.swift in Sources */,
 				6FDD1441266F7C0600A50C35 /* AppliedPromotionTypeResponse.swift in Sources */,
+				F37613C32A66929C009F2EE4 /* CrossView.swift in Sources */,
 				F3482F1F2A65DC20002A41EC /* CopyInappMessageDelegate.swift in Sources */,
 				33EBF0B0264E6283002A35D5 /* SessionManager.swift in Sources */,
 				337C7952265646D10092B580 /* OperationBodyRequestType.swift in Sources */,
