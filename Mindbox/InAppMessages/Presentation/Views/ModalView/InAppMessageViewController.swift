@@ -1,5 +1,5 @@
 //
-//  InAppMessageViewController.swift
+//  ModalViewController.swift
 //  Mindbox
 //
 //  Created by Максим Казаков on 07.09.2022.
@@ -7,7 +7,11 @@
 
 import UIKit
 
-final class InAppMessageViewController: UIViewController {
+final class ModalViewController: UIViewController {
+    
+    var crossView: CrossView?
+    var inAppView: InAppImageOnlyView?
+    var crossSize: CGFloat = 24
 
     init(
         inAppUIModel: InAppMessageUIModel,
@@ -35,7 +39,13 @@ final class InAppMessageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black.withAlphaComponent(0.2)
 
-        let inAppView = InAppImageOnlyView(uiModel: inAppUIModel)
+        inAppView = InAppImageOnlyView(uiModel: inAppUIModel)
+        crossView = CrossView(lineColor: .black, lineWidth: 3, crossSize: crossSize)
+        guard let inAppView = inAppView,
+              let crossView = crossView else {
+            return
+        }
+        
         view.addSubview(inAppView)
         inAppView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -48,10 +58,33 @@ final class InAppMessageViewController: UIViewController {
         inAppView.addGestureRecognizer(imageTapGestureRecognizer)
         inAppView.onClose = { [weak self] in self?.onClose() }
 
+        view.addSubview(crossView)
+        crossView.isUserInteractionEnabled = true
         let closeTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapDimmedView))
+        crossView.addGestureRecognizer(closeTapRecognizer)
         view.addGestureRecognizer(closeTapRecognizer)
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        guard let inAppView = inAppView,
+              let crossView = crossView else {
+            return
+        }
+        
+        let trailingOffsetPercent: CGFloat = 2
 
+        let horizontalOffset = inAppView.frame.width * trailingOffsetPercent / 100
+        let verticalOffset = inAppView.frame.height * trailingOffsetPercent / 100
+        crossView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            crossView.trailingAnchor.constraint(equalTo: inAppView.trailingAnchor, constant: -horizontalOffset),
+            crossView.topAnchor.constraint(equalTo: inAppView.topAnchor, constant: verticalOffset),
+            crossView.widthAnchor.constraint(equalToConstant: crossSize),
+            crossView.heightAnchor.constraint(equalToConstant: crossSize)
+        ])
+    }
 
     private var viewWillAppearWasCalled = false
     override func viewWillAppear(_ animated: Bool) {

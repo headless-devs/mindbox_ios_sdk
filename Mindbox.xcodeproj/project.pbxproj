@@ -314,6 +314,12 @@
 		F3482F232A65DC37002A41EC /* InAppMessagesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F222A65DC37002A41EC /* InAppMessagesDelegate.swift */; };
 		F3482F2A2A65DCFC002A41EC /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F292A65DCFC002A41EC /* String+Extensions.swift */; };
 		F37613C32A66929C009F2EE4 /* CrossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37613C22A66929C009F2EE4 /* CrossView.swift */; };
+		F37613CB2A669630009F2EE4 /* ViewFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37613CA2A669630009F2EE4 /* ViewFactoryProtocol.swift */; };
+		F37613CD2A669645009F2EE4 /* ModalViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37613CC2A669645009F2EE4 /* ModalViewFactory.swift */; };
+		F37613CF2A669696009F2EE4 /* PresentationActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37613CE2A669696009F2EE4 /* PresentationActionUseCase.swift */; };
+		F37613D12A6696A6009F2EE4 /* PresentationDisplayUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37613D02A6696A6009F2EE4 /* PresentationDisplayUseCase.swift */; };
+		F37613D32A6696C1009F2EE4 /* PresentationStrategyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37613D22A6696C1009F2EE4 /* PresentationStrategyProtocol.swift */; };
+		F37613D52A66973C009F2EE4 /* ModalPresentationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37613D42A66973C009F2EE4 /* ModalPresentationStrategy.swift */; };
 		F397EEAD2A4456C300D48CEC /* ProtocolError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F397EEAC2A4456C300D48CEC /* ProtocolError.swift */; };
 		F397EEAF2A4456FD00D48CEC /* MindboxError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F397EEAE2A4456FD00D48CEC /* MindboxError.swift */; };
 		F397EEB12A44571300D48CEC /* UnknownDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F397EEB02A44571300D48CEC /* UnknownDecodable.swift */; };
@@ -683,6 +689,12 @@
 		F3482F222A65DC37002A41EC /* InAppMessagesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppMessagesDelegate.swift; sourceTree = "<group>"; };
 		F3482F292A65DCFC002A41EC /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		F37613C22A66929C009F2EE4 /* CrossView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossView.swift; sourceTree = "<group>"; };
+		F37613CA2A669630009F2EE4 /* ViewFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactoryProtocol.swift; sourceTree = "<group>"; };
+		F37613CC2A669645009F2EE4 /* ModalViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewFactory.swift; sourceTree = "<group>"; };
+		F37613CE2A669696009F2EE4 /* PresentationActionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationActionUseCase.swift; sourceTree = "<group>"; };
+		F37613D02A6696A6009F2EE4 /* PresentationDisplayUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationDisplayUseCase.swift; sourceTree = "<group>"; };
+		F37613D22A6696C1009F2EE4 /* PresentationStrategyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationStrategyProtocol.swift; sourceTree = "<group>"; };
+		F37613D42A66973C009F2EE4 /* ModalPresentationStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationStrategy.swift; sourceTree = "<group>"; };
 		F397EEAC2A4456C300D48CEC /* ProtocolError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolError.swift; sourceTree = "<group>"; };
 		F397EEAE2A4456FD00D48CEC /* MindboxError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindboxError.swift; sourceTree = "<group>"; };
 		F397EEB02A44571300D48CEC /* UnknownDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknownDecodable.swift; sourceTree = "<group>"; };
@@ -1816,6 +1828,7 @@
 			isa = PBXGroup;
 			children = (
 				F37613C72A6695D2009F2EE4 /* PresentationDisplayUseCase */,
+				F37613CE2A669696009F2EE4 /* PresentationActionUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1824,6 +1837,7 @@
 			isa = PBXGroup;
 			children = (
 				F37613C82A6695DC009F2EE4 /* Strategy */,
+				F37613D02A6696A6009F2EE4 /* PresentationDisplayUseCase.swift */,
 			);
 			path = PresentationDisplayUseCase;
 			sourceTree = "<group>";
@@ -1831,6 +1845,8 @@
 		F37613C82A6695DC009F2EE4 /* Strategy */ = {
 			isa = PBXGroup;
 			children = (
+				F37613D22A6696C1009F2EE4 /* PresentationStrategyProtocol.swift */,
+				F37613D42A66973C009F2EE4 /* ModalPresentationStrategy.swift */,
 			);
 			path = Strategy;
 			sourceTree = "<group>";
@@ -1838,6 +1854,8 @@
 		F37613C92A6695E4009F2EE4 /* ViewFactory */ = {
 			isa = PBXGroup;
 			children = (
+				F37613CA2A669630009F2EE4 /* ViewFactoryProtocol.swift */,
+				F37613CC2A669645009F2EE4 /* ModalViewFactory.swift */,
 			);
 			path = ViewFactory;
 			sourceTree = "<group>";
@@ -2141,6 +2159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F37613CF2A669696009F2EE4 /* PresentationActionUseCase.swift in Sources */,
 				847F581725C8981F00147A9A /* HTTPURLResponseStatusCodeValidator.swift in Sources */,
 				33072F442664CC6C001F1AB2 /* IssuedPointOfContactResponse.swift in Sources */,
 				A17958762978AEC600609E91 /* OrTargetingChecker.swift in Sources */,
@@ -2200,6 +2219,7 @@
 				84DEE8B125CC042A00C98CC7 /* MBDatabaseError.swift in Sources */,
 				A179587C2978AED800609E91 /* GeoTargeting.swift in Sources */,
 				3333C1E12681EA4D00B60D84 /* NotificationsPayloads.swift in Sources */,
+				F37613D52A66973C009F2EE4 /* ModalPresentationStrategy.swift in Sources */,
 				9B4F9DFB28D088AE002C9CF0 /* InAppMessageViewController.swift in Sources */,
 				334F3AE7264C199900A6AC00 /* CatalogProductListRequest.swift in Sources */,
 				B3A625562689FDD400B6A3B7 /* BalanceResponse.swift in Sources */,
@@ -2288,6 +2308,7 @@
 				84EAEDFC25C8B18B00726063 /* DeviceModelHelper.swift in Sources */,
 				84DC4A0725D27D6000D5D758 /* UNAuthorizationStatusProvider.swift in Sources */,
 				3328FE4226303F2F000A30D0 /* String+Regex.swift in Sources */,
+				F37613D12A6696A6009F2EE4 /* PresentationDisplayUseCase.swift in Sources */,
 				33072F322664C357001F1AB2 /* ProductListResponse.swift in Sources */,
 				9B24FAB128C74BD200F10B5D /* InAppConfigurationManager.swift in Sources */,
 				334F3AF0264C199900A6AC00 /* DiscountRequest.swift in Sources */,
@@ -2309,6 +2330,7 @@
 				33C81EA4264145CD00863380 /* TimerManager.swift in Sources */,
 				B3F4F981268EEAC90092EC3C /* AmountBenefisTypeResponse.swift in Sources */,
 				A11FBE8929DD76BF00F5FB7B /* InAppMessagesEventSender.swift in Sources */,
+				F37613CB2A669630009F2EE4 /* ViewFactoryProtocol.swift in Sources */,
 				33072F422664CB81001F1AB2 /* PromoCodeResponse.swift in Sources */,
 				339ACE50262DAC74003590D2 /* CustomEvent.swift in Sources */,
 				314B390025AEE96F00E947B9 /* CoreController.swift in Sources */,
@@ -2323,6 +2345,7 @@
 				314B38FD25AEE8B200E947B9 /* MBConfiguration.swift in Sources */,
 				6FDD1447266F7C2B00A50C35 /* LimitResponse.swift in Sources */,
 				9B4F9DFE28D088B5002C9CF0 /* InAppImageOnlyView.swift in Sources */,
+				F37613CD2A669645009F2EE4 /* ModalViewFactory.swift in Sources */,
 				847F580725C88C7A00147A9A /* NetworkFetcher.swift in Sources */,
 				84D350D225C99F320044E4E6 /* IDFVFetcher.swift in Sources */,
 				84B625E925C989C100AB6228 /* UDIDValidator.swift in Sources */,
@@ -2339,6 +2362,7 @@
 				9B9C95312921116F00BB29DA /* UUIDDebugService.swift in Sources */,
 				6FDD1443266F7C1600A50C35 /* BalanceTypeReponse.swift in Sources */,
 				337C7954265652A80092B580 /* ProductCategoryRequest.swift in Sources */,
+				F37613D32A6696C1009F2EE4 /* PresentationStrategyProtocol.swift in Sources */,
 				334F3AF1264C199900A6AC00 /* PoolRequest.swift in Sources */,
 				3191C2A625ADFD8000E7D6B9 /* Mindbox.swift in Sources */,
 				A184654529C310F100E64780 /* InAppOperationJSONModel.swift in Sources */,

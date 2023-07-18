@@ -48,6 +48,11 @@ final class DependencyProvider: DependencyContainer {
         let logsManager = SDKLogsManager(persistenceStorage: persistenceStorage, eventRepository: instanceFactory.makeEventRepository())
         sessionTemporaryStorage = SessionTemporaryStorage()
         imageDownloader = URLSessionImageDownloader(persistenceStorage: persistenceStorage)
+        let tracker = InAppMessagesTracker(databaseRepository: databaseRepository)
+        let displayUseCase = PresentationDisplayUseCase()
+        let actionUseCase = PresentationActionUseCase(tracker: tracker)
+        let presentationManager = InAppPresentationManager(displayUseCase: displayUseCase,
+                                                           actionUseCase: actionUseCase)
         inAppMessagesManager = InAppCoreManager(
             configManager: InAppConfigurationManager(
                 inAppConfigAPI: InAppConfigurationAPI(persistenceStorage: persistenceStorage),
@@ -60,9 +65,7 @@ final class DependencyProvider: DependencyContainer {
                                                                    persistenceStorage: persistenceStorage,
                                                                    imageDownloader: imageDownloader),
                 logsManager: logsManager, sessionStorage: sessionTemporaryStorage),
-            presentationManager: InAppPresentationManager(
-                inAppTracker: InAppMessagesTracker(databaseRepository: databaseRepository)
-            ),
+            presentationManager: presentationManager,
             persistenceStorage: persistenceStorage,
             sessionStorage: sessionTemporaryStorage
         )
