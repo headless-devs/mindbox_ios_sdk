@@ -64,8 +64,8 @@ final class DependencyProvider: DependencyContainer {
         
         
         let tracker = InAppMessagesTracker(databaseRepository: databaseRepository)
-        let displayUseCase = InAppDisplayUseCase()
-        let actionUseCase = InAppActionUseCase(tracker: tracker)
+        let displayUseCase = PresentationDisplayUseCase()
+        let actionUseCase = PresentationActionUseCase(tracker: tracker)
         let presentationManager = InAppPresentationManager(displayUseCase: displayUseCase,
                                                            actionUseCase: actionUseCase)
         

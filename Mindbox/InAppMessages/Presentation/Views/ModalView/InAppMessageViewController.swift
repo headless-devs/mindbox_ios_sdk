@@ -1,5 +1,5 @@
 //
-//  InAppMessageViewController.swift
+//  ModalViewController.swift
 //  Mindbox
 //
 //  Created by Максим Казаков on 07.09.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class InAppMessageViewController: UIViewController {
+final class ModalViewController: UIViewController {
     
     var crossView: CrossView?
     var inAppView: InAppImageOnlyView?

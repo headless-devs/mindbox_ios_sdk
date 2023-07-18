@@ -1,0 +1,15 @@
+//
+//  PresentationStrategy.swift
+//  Mindbox
+//
+//  Created by vailence on 18.07.2023.
+//  Copyright © 2023 Mindbox. All rights reserved.
+//
+
+import UIKit
+
+protocol InAppPresentationStrategy {
+    func getWindow() -> UIWindow?
+    func present(inAppUIModel: InAppMessageUIModel, in window: UIWindow, using viewController: UIViewController)
+    func dismiss(viewController: UIViewController)
+}

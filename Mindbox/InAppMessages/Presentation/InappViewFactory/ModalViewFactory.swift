@@ -16,7 +16,7 @@ class ModalViewFactory: InappViewFactory {
                 onPresented: @escaping () -> Void,
                 onTapAction: @escaping () -> Void,
                 onClose: @escaping () -> Void) -> UIViewController {
-        let viewController = InAppMessageViewController(inAppUIModel: inAppUIModel,
+        let viewController = ModalViewController(inAppUIModel: inAppUIModel,
                                                         onPresented: onPresented,
                                                         onTapAction: onTapAction,
                                                         onClose: onClose)
