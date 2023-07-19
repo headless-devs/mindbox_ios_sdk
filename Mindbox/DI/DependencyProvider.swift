@@ -24,7 +24,11 @@ final class DependencyProvider: DependencyContainer {
     let uuidDebugService: UUIDDebugService
     var sessionTemporaryStorage: SessionTemporaryStorage
     var inappMessageEventSender: InappMessageEventSender
-    let imageDownloader: ImageDownloader
+    let sdkVersionValidator: SDKVersionValidator
+    let geoService: GeoServiceProtocol
+    let segmentationSevice: SegmentationServiceProtocol
+    var imageDownloadService: ImageDownloadServiceProtocol
+    var abTestDeviceMixer: ABTestDeviceMixer
 
     init() throws {
         utilitiesFetcher = MBUtilitiesFetcher()
@@ -47,7 +51,16 @@ final class DependencyProvider: DependencyContainer {
         sessionManager = SessionManager(trackVisitManager: instanceFactory.makeTrackVisitManager())
         let logsManager = SDKLogsManager(persistenceStorage: persistenceStorage, eventRepository: instanceFactory.makeEventRepository())
         sessionTemporaryStorage = SessionTemporaryStorage()
-        imageDownloader = URLSessionImageDownloader(persistenceStorage: persistenceStorage)
+        sdkVersionValidator = SDKVersionValidator(sdkVersionNumeric: Constants.Versions.sdkVersionNumeric)
+        geoService = GeoService(fetcher: instanceFactory.makeNetworkFetcher(),
+                                sessionTemporaryStorage: sessionTemporaryStorage,
+                                targetingChecker: inAppTargetingChecker)
+        segmentationSevice = SegmentationService(customerSegmentsAPI: .live,
+                                                 sessionTemporaryStorage: sessionTemporaryStorage,
+                                                 targetingChecker: inAppTargetingChecker)
+        let imageDownloader = URLSessionImageDownloader(persistenceStorage: persistenceStorage)
+        imageDownloadService = ImageDownloadService(imageDownloader: imageDownloader)
+        abTestDeviceMixer = ABTestDeviceMixer()
         let tracker = InAppMessagesTracker(databaseRepository: databaseRepository)
         let displayUseCase = PresentationDisplayUseCase()
         let actionUseCase = PresentationActionUseCase(tracker: tracker)
@@ -57,13 +70,15 @@ final class DependencyProvider: DependencyContainer {
             configManager: InAppConfigurationManager(
                 inAppConfigAPI: InAppConfigurationAPI(persistenceStorage: persistenceStorage),
                 inAppConfigRepository: InAppConfigurationRepository(),
-                inAppConfigurationMapper: InAppConfigutationMapper(customerSegmentsAPI: .live,
-                                                                   inAppsVersion: inAppsSdkVersion,
+                inAppConfigurationMapper: InAppConfigutationMapper(geoService: geoService,
+                                                                   segmentationService: segmentationSevice,
+                                                                   customerSegmentsAPI: .live,
                                                                    targetingChecker: inAppTargetingChecker,
-                                                                   networkFetcher: instanceFactory.makeNetworkFetcher(),
                                                                    sessionTemporaryStorage: sessionTemporaryStorage,
                                                                    persistenceStorage: persistenceStorage,
-                                                                   imageDownloader: imageDownloader),
+                                                                   sdkVersionValidator: sdkVersionValidator,
+                                                                   imageDownloadService: imageDownloadService,
+                                                                   abTestDeviceMixer: abTestDeviceMixer),
                 logsManager: logsManager, sessionStorage: sessionTemporaryStorage),
             presentationManager: presentationManager,
             persistenceStorage: persistenceStorage,
