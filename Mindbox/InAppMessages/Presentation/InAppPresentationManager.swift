@@ -83,11 +83,12 @@ final class InAppPresentationManager: InAppPresentationManagerProtocol {
                     self?.actionUseCase.onTapAction(
                         inApp: inAppUIModel,
                         onTap: onTapAction,
-                        close: { self?.displayUseCase.dismissInAppUIModel(inAppUIModel: inAppUIModel, onClose: onPresentationCompleted) }
-                    )
+                        close: {
+                            self?.displayUseCase.dismissInAppUIModel(onClose: onPresentationCompleted)
+                        })
                 },
                 onClose: {
-                    self?.displayUseCase.dismissInAppUIModel(inAppUIModel: inAppUIModel, onClose: onPresentationCompleted)
+                    self?.displayUseCase.dismissInAppUIModel(onClose: onPresentationCompleted)
                 }
             )
         }

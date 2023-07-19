@@ -14,6 +14,7 @@ final class PresentationDisplayUseCase {
     private var presentationStrategy: PresentationStrategyProtocol?
     private var presentedVC: UIViewController?
     private var viewFactory: ViewFactoryProtocol?
+    private var model: InAppMessageUIModel?
 
     func presentInAppUIModel(inAppUIModel: InAppMessageUIModel, onPresented: @escaping () -> Void, onTapAction: @escaping () -> Void, onClose: @escaping () -> Void) {
         guard let window = presentationStrategy?.getWindow() else {
@@ -21,11 +22,11 @@ final class PresentationDisplayUseCase {
             return
         }
         
-        let close: () -> Void = { [weak self] in
-            self?.dismissInAppUIModel(inAppUIModel: inAppUIModel, onClose: onClose)
-        }
-        
-        guard let viewController = viewFactory?.create(inAppUIModel: inAppUIModel, onPresented: onPresented, onTapAction: onTapAction, onClose: close) else {
+        model = inAppUIModel
+        guard let viewController = viewFactory?.create(inAppUIModel: inAppUIModel,
+                                                       onPresented: onPresented,
+                                                       onTapAction: onTapAction,
+                                                       onClose: onClose) else {
             return
         }
         
@@ -33,13 +34,14 @@ final class PresentationDisplayUseCase {
         presentationStrategy?.present(inAppUIModel: inAppUIModel, in: window, using: viewController)
     }
 
-    func dismissInAppUIModel(inAppUIModel: InAppMessageUIModel, onClose: @escaping () -> Void) {
+    func dismissInAppUIModel(onClose: @escaping () -> Void) {
         guard let presentedVC = presentedVC else {
             return
         }
         presentationStrategy?.dismiss(viewController: presentedVC)
         onClose()
         self.presentedVC = nil
+        self.model = nil
     }
     
     func changeType(type: ViewPresentationType) {
