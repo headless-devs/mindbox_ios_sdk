@@ -58,7 +58,7 @@ final class ModalViewController: UIViewController {
         inAppView.addGestureRecognizer(imageTapGestureRecognizer)
         inAppView.onClose = { [weak self] in self?.onClose() }
 
-        view.addSubview(crossView)
+        inAppView.addSubview(crossView)
         crossView.isUserInteractionEnabled = true
         let closeTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapDimmedView))
         crossView.addGestureRecognizer(closeTapRecognizer)
@@ -73,10 +73,11 @@ final class ModalViewController: UIViewController {
             return
         }
         
-        let trailingOffsetPercent: CGFloat = 2
+        let trailingOffsetPercent: CGFloat = 97
+        let topOffsetPercent: CGFloat = 3
 
-        let horizontalOffset = inAppView.frame.width * trailingOffsetPercent / 100
-        let verticalOffset = inAppView.frame.height * trailingOffsetPercent / 100
+        let horizontalOffset = (inAppView.frame.width - crossSize) * trailingOffsetPercent / 100
+        let verticalOffset = (inAppView.frame.height - crossSize) * topOffsetPercent / 100
         crossView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             crossView.trailingAnchor.constraint(equalTo: inAppView.trailingAnchor, constant: -horizontalOffset),

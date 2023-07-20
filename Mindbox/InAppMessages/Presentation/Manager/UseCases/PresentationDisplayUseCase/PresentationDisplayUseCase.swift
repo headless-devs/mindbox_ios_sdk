@@ -40,6 +40,7 @@ final class PresentationDisplayUseCase {
         }
         presentationStrategy?.dismiss(viewController: presentedVC)
         onClose()
+        self.viewFactory = nil
         self.presentedVC = nil
         self.model = nil
     }
