@@ -33,17 +33,26 @@ class CrossView: UIView {
     }
 
     override func draw(_ rect: CGRect) {
-        guard let context = UIGraphicsGetCurrentContext() else { return }
-        context.setLineWidth(lineWidth)
+        let path = UIBezierPath()
+
+        path.lineWidth = lineWidth
+        path.lineCapStyle = .round
+
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: crossSize, y: crossSize))
+        path.move(to: CGPoint(x: crossSize, y: 0))
+        path.addLine(to: CGPoint(x: 0, y: crossSize))
+
         lineColor.setStroke()
-        context.setLineCap(.round)
-        
-        context.move(to: CGPoint(x: 0, y: 0))
-        context.addLine(to: CGPoint(x: crossSize, y: crossSize))
-        
-        context.move(to: CGPoint(x: crossSize, y: 0))
-        context.addLine(to: CGPoint(x: 0, y: crossSize))
-        
-        context.strokePath()
+
+        path.stroke()
+
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.strokeColor = lineColor.cgColor
+        shapeLayer.lineWidth = lineWidth
+        shapeLayer.lineCap = .round
+
+        self.layer.addSublayer(shapeLayer)
     }
 }

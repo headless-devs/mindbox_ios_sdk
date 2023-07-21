@@ -73,7 +73,7 @@ final class ModalViewController: UIViewController {
             return
         }
         
-        let trailingOffsetPercent: CGFloat = 97
+        let trailingOffsetPercent: CGFloat = 3
         let topOffsetPercent: CGFloat = 3
 
         let horizontalOffset = (inAppView.frame.width - crossSize) * trailingOffsetPercent / 100
