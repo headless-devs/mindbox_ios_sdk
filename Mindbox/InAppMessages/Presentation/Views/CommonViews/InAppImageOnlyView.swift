@@ -10,7 +10,7 @@ import UIKit
 final class InAppImageOnlyView: UIView {
     var onClose: (() -> Void)?
     let imageView = UIImageView()
-    let uiModel: InAppMessageUIModel
+    let uiModel: InAppMessageUIModel?
 
     init(uiModel: InAppMessageUIModel) {
         self.uiModel = uiModel
@@ -19,10 +19,16 @@ final class InAppImageOnlyView: UIView {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.uiModel = nil
+        super.init(coder: coder)
+        customInit()
     }
 
     func customInit() {
+        guard let uiModel = uiModel else {
+            return
+        }
+        
         let image = uiModel.image
         imageView.contentMode = .scaleAspectFill
         imageView.image = image
