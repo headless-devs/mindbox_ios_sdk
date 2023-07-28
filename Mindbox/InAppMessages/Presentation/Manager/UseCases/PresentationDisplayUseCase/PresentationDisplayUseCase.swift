@@ -18,7 +18,7 @@ final class PresentationDisplayUseCase {
 
     func presentInAppUIModel(inAppUIModel: InAppMessageUIModel, onPresented: @escaping () -> Void, onTapAction: @escaping () -> Void, onClose: @escaping () -> Void) {
         guard let window = presentationStrategy?.getWindow() else {
-            Logger.common(message: "InappWindow creating failed")
+            Logger.common(message: "In-app modal window creating failed")
             return
         }
         

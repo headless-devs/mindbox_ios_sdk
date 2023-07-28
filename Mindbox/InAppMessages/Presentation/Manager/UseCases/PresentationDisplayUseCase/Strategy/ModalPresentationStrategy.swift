@@ -19,13 +19,13 @@ final class ModalPresentationStrategy: PresentationStrategyProtocol {
     func present(inAppUIModel: InAppMessageUIModel, in window: UIWindow, using viewController: UIViewController) {
         window.rootViewController = viewController
         window.isHidden = false
-        Logger.common(message: "In-app with id \(inAppUIModel.inAppId) presented", level: .info, category: .inAppMessages)
+        Logger.common(message: "In-app modal with id \(inAppUIModel.inAppId) presented", level: .info, category: .inAppMessages)
     }
 
     func dismiss(viewController: UIViewController) {
         viewController.view.window?.isHidden = true
         viewController.view.window?.rootViewController = nil
-        Logger.common(message: "In-app presentation dismissed", level: .debug, category: .inAppMessages)
+        Logger.common(message: "In-app modal presentation dismissed", level: .debug, category: .inAppMessages)
     }
     
     private func makeInAppMessageWindow() -> UIWindow? {
