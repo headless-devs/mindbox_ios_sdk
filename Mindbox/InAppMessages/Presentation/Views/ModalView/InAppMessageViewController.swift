@@ -38,15 +38,19 @@ final class ModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black.withAlphaComponent(0.2)
-
+        
         inAppView = InAppImageOnlyView(uiModel: inAppUIModel)
-        crossView = CrossView(lineColor: .black, lineWidth: 3, crossSize: crossSize)
+        crossView = CrossView(lineColorHex: "000000", lineWidth: 1)
+        
         guard let inAppView = inAppView,
               let crossView = crossView else {
             return
         }
-        
+        let onTapDimmedViewGesture = UITapGestureRecognizer(target: self, action: #selector(onTapDimmedView))
+        view.addGestureRecognizer(onTapDimmedViewGesture)
+        view.isUserInteractionEnabled = true
         view.addSubview(inAppView)
+        
         inAppView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             inAppView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -56,13 +60,13 @@ final class ModalViewController: UIViewController {
         ])
         let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapImage))
         inAppView.addGestureRecognizer(imageTapGestureRecognizer)
-        inAppView.onClose = { [weak self] in self?.onClose() }
 
         inAppView.addSubview(crossView)
         crossView.isUserInteractionEnabled = true
-        let closeTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapDimmedView))
-        crossView.addGestureRecognizer(closeTapRecognizer)
-        view.addGestureRecognizer(closeTapRecognizer)
+
+        let closeRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onCloseButton))
+        closeRecognizer.minimumPressDuration = 0
+        crossView.addGestureRecognizer(closeRecognizer)
     }
     
     override func viewDidLayoutSubviews() {
@@ -73,11 +77,11 @@ final class ModalViewController: UIViewController {
             return
         }
         
-        let trailingOffsetPercent: CGFloat = 3
-        let topOffsetPercent: CGFloat = 3
+        let trailingOffsetPercent: CGFloat = 0.03
+        let topOffsetPercent: CGFloat = 0.03
 
-        let horizontalOffset = (inAppView.frame.width - crossSize) * trailingOffsetPercent / 100
-        let verticalOffset = (inAppView.frame.height - crossSize) * topOffsetPercent / 100
+        let horizontalOffset = (inAppView.frame.width - crossSize) * trailingOffsetPercent
+        let verticalOffset = (inAppView.frame.height - crossSize) * topOffsetPercent
         crossView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             crossView.trailingAnchor.constraint(equalTo: inAppView.trailingAnchor, constant: -horizontalOffset),
@@ -93,6 +97,18 @@ final class ModalViewController: UIViewController {
         guard !viewWillAppearWasCalled else { return }
         viewWillAppearWasCalled = true
         onPresented()
+    }
+    
+    @objc private func onCloseButton(_ gesture: UILongPressGestureRecognizer) {
+        guard let crossView = crossView else {
+            return
+        }
+        
+        let location = gesture.location(in: crossView)
+        let isInsideCrossView = crossView.bounds.contains(location)
+        if gesture.state == .ended && isInsideCrossView {
+            onClose()
+        }
     }
 
     @objc private func onTapDimmedView() {
