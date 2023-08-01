@@ -20,7 +20,8 @@ struct ConfigResponse: Decodable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        inapps = ConfigResponse.decodeIfPresent(container, forKey: .inapps, errorDesc: "Cannot decode InApps")
+        
+        inapps = try? container.decode([InAppDecoder].self, forKey: .inapps).compactMap { $0.value }
         monitoring = ConfigResponse.decodeIfPresent(container, forKey: .monitoring, errorDesc: "Cannot decode Monitoring")
         settings = ConfigResponse.decodeIfPresent(container, forKey: .settings, errorDesc: "Cannot decode Settings")
         

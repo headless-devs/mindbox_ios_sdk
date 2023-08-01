@@ -306,6 +306,8 @@
 		B3F4F98E268EEB4B0092EC3C /* LimitBenefitsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F4F98D268EEB4B0092EC3C /* LimitBenefitsResponse.swift */; };
 		F30C6EF62A73B0DD0092B8BF /* InAppImageOnlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C6EF52A73B0DD0092B8BF /* InAppImageOnlyView.swift */; };
 		F30C6EF82A73B0EE0092B8BF /* CrossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C6EF72A73B0EE0092B8BF /* CrossView.swift */; };
+		F30C6EFA2A78F8110092B8BF /* InappValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C6EF92A78F8110092B8BF /* InappValidator.swift */; };
+		F30C6EFD2A790E4C0092B8BF /* InappDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C6EFC2A790E4C0092B8BF /* InappDecoder.swift */; };
 		F31801F82A38649D0021774C /* InappConfigResponseValid.json in Resources */ = {isa = PBXBuildFile; fileRef = F31801F72A38649D0021774C /* InappConfigResponseValid.json */; };
 		F31801FB2A386A5B0021774C /* InappConfigResponseSettingsInvalid.json in Resources */ = {isa = PBXBuildFile; fileRef = F31801FA2A386A5B0021774C /* InappConfigResponseSettingsInvalid.json */; };
 		F31801FE2A386BE60021774C /* InappConfigResponseAbtestsInvalid.json in Resources */ = {isa = PBXBuildFile; fileRef = F31801FC2A386BE60021774C /* InappConfigResponseAbtestsInvalid.json */; };
@@ -721,6 +723,8 @@
 		B3F4F98D268EEB4B0092EC3C /* LimitBenefitsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimitBenefitsResponse.swift; sourceTree = "<group>"; };
 		F30C6EF52A73B0DD0092B8BF /* InAppImageOnlyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppImageOnlyView.swift; sourceTree = "<group>"; };
 		F30C6EF72A73B0EE0092B8BF /* CrossView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossView.swift; sourceTree = "<group>"; };
+		F30C6EF92A78F8110092B8BF /* InappValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappValidator.swift; sourceTree = "<group>"; };
+		F30C6EFC2A790E4C0092B8BF /* InappDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappDecoder.swift; sourceTree = "<group>"; };
 		F31801F72A38649D0021774C /* InappConfigResponseValid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InappConfigResponseValid.json; sourceTree = "<group>"; };
 		F31801FA2A386A5B0021774C /* InappConfigResponseSettingsInvalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InappConfigResponseSettingsInvalid.json; sourceTree = "<group>"; };
 		F31801FC2A386BE60021774C /* InappConfigResponseAbtestsInvalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InappConfigResponseAbtestsInvalid.json; sourceTree = "<group>"; };
@@ -1309,6 +1313,7 @@
 				F3A8B9992A3A471800E9C055 /* ABTestVariantsValidator.swift */,
 				F3A8B99D2A3A4FD600E9C055 /* ABTestValidator.swift */,
 				F3482F292A65DCFC002A41EC /* String+Extensions.swift */,
+				F30C6EF92A78F8110092B8BF /* InappValidator.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -1516,6 +1521,7 @@
 		9B24FAB628C7554C00F10B5D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F30C6EFB2A790E3D0092B8BF /* Decoders */,
 				F39B67A32A3C6BCE005C0CCA /* CustomerSegment */,
 				F3A8B9A12A3A6DBF00E9C055 /* Config */,
 				A154E32F299E0F1600F8F074 /* InAppGeoResponse.swift */,
@@ -1868,6 +1874,14 @@
 				A1F3EE4D298BEF0B005FA828 /* OSLogWritterTests.swift */,
 			);
 			path = OSLogWritterTests;
+			sourceTree = "<group>";
+		};
+		F30C6EFB2A790E3D0092B8BF /* Decoders */ = {
+			isa = PBXGroup;
+			children = (
+				F30C6EFC2A790E4C0092B8BF /* InappDecoder.swift */,
+			);
+			path = Decoders;
 			sourceTree = "<group>";
 		};
 		F31801F92A386A350021774C /* ConfigResponse */ = {
@@ -2482,6 +2496,7 @@
 				6FDD1451266F7C8000A50C35 /* UsageServiceStatusResponse.swift in Sources */,
 				F3A8B9A92A3A713E00E9C055 /* SettingsModel.swift in Sources */,
 				9B24FAB528C751E400F10B5D /* InAppImagesStorage.swift in Sources */,
+				F30C6EFD2A790E4C0092B8BF /* InappDecoder.swift in Sources */,
 				F3A8B9A32A3A6E6900E9C055 /* SdkVersionModel.swift in Sources */,
 				3333C1DE2681E9F300B60D84 /* URLRequestBuilder.swift in Sources */,
 				334F3AF5264C199900A6AC00 /* CodableDictionary.swift in Sources */,
@@ -2519,6 +2534,7 @@
 				847F580F25C88E8C00147A9A /* MBNetworkFetcher.swift in Sources */,
 				F3A8B9AB2A3A719C00E9C055 /* ABTestModel.swift in Sources */,
 				33072F342664C3E1001F1AB2 /* ProductResponse.swift in Sources */,
+				F30C6EFA2A78F8110092B8BF /* InappValidator.swift in Sources */,
 				33072F3E2664C7B5001F1AB2 /* DiscountCardResponse.swift in Sources */,
 				8410681325ECDC73004701C2 /* DatabaseLoader.swift in Sources */,
 				9B24FAAA28C74B6A00F10B5D /* InAppPresentationManager.swift in Sources */,
