@@ -12,3 +12,7 @@ protocol Validator {
     associatedtype T
     func isValid(item: T) -> Bool
 }
+
+protocol ItemValidator: Validator {
+    func validate(item: T) -> T?
+}
