@@ -14,9 +14,13 @@ struct InAppDecoder: Decodable {
 
     init(from decoder: Decoder) throws {
         let inApp = try InApp(from: decoder)
+        let actionValidator = AnyValidatorBox(InappBackgroundLayerActionValidator())
+        let layersValidator = AnyValidatorBox(VariantLayersValidator(actionValidator: actionValidator))
+        let variantValidator = AnyValidatorBox(InappVariantValidator(layersValidator: layersValidator))
+        let sdkValidator = AnyValidatorBox(SDKVersionValidator(sdkVersionNumeric: Constants.Versions.sdkVersionNumeric))
         let inAppValidator = InappValidator(
-            sdkVersionValidator: SDKVersionValidator(sdkVersionNumeric: Constants.Versions.sdkVersionNumeric),
-            variantValidator: InappVariantValidator()
+            sdkVersionValidator: sdkValidator,
+            variantValidator: variantValidator
         )
         value = inAppValidator.validate(item: inApp)
     }

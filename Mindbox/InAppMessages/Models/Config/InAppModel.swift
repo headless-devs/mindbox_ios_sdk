@@ -51,12 +51,12 @@ struct Background: Decodable, Equatable {
 
     struct Layer: Decodable, Equatable {
         let type: LayerType?
-//        let action: Action
+        let action: Action?
 //        let source: Source
 
         enum CodingKeys: String, CodingKey {
             case type = "$type"
-//            case action
+            case action
 //            case source
         }
 
@@ -70,22 +70,29 @@ struct Background: Decodable, Equatable {
                 self = LayerType(rawValue: type) ?? .unknown
             }
         }
-//
-//        struct Action: Decodable, Equatable {
-//            let type: ActionType
-//            let intentPayload: String
-//            let value: String
-//
-//            enum CodingKeys: String, CodingKey {
-//                case type = "$type"
-//                case intentPayload
-//                case value
-//            }
-//
-//            enum ActionType: String, Decodable, Equatable {
-//                case redirectUrl
-//            }
-//        }
+        
+        struct Action: Decodable, Equatable {
+            let type: ActionType?
+            let intentPayload: String?
+            let value: String?
+
+            enum CodingKeys: String, CodingKey {
+                case type = "$type"
+                case intentPayload
+                case value
+            }
+
+            enum ActionType: String, Decodable, Equatable {
+                case redirectUrl
+                case unknown
+                
+                init(from decoder: Decoder) throws {
+                    let container = try decoder.singleValueContainer()
+                    let type: String = try container.decode(String.self)
+                    self = ActionType(rawValue: type) ?? .unknown
+                }
+            }
+        }
 //
 //        struct Source: Decodable, Equatable {
 //            let type: SourceType
@@ -102,6 +109,8 @@ struct Background: Decodable, Equatable {
 //        }
     }
 }
+
+
 
 //    struct Content: Decodable, Equatable {
 //        let background: Background
