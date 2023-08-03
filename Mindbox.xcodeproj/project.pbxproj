@@ -306,12 +306,37 @@
 		B3F4F98E268EEB4B0092EC3C /* LimitBenefitsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F4F98D268EEB4B0092EC3C /* LimitBenefitsResponse.swift */; };
 		F30C6EF62A73B0DD0092B8BF /* InAppImageOnlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C6EF52A73B0DD0092B8BF /* InAppImageOnlyView.swift */; };
 		F30C6EF82A73B0EE0092B8BF /* CrossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C6EF72A73B0EE0092B8BF /* CrossView.swift */; };
-		F30C6EFA2A78F8110092B8BF /* InappValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C6EF92A78F8110092B8BF /* InappValidator.swift */; };
-		F30C6EFD2A790E4C0092B8BF /* InappDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C6EFC2A790E4C0092B8BF /* InappDecoder.swift */; };
 		F31801F82A38649D0021774C /* InappConfigResponseValid.json in Resources */ = {isa = PBXBuildFile; fileRef = F31801F72A38649D0021774C /* InappConfigResponseValid.json */; };
 		F31801FB2A386A5B0021774C /* InappConfigResponseSettingsInvalid.json in Resources */ = {isa = PBXBuildFile; fileRef = F31801FA2A386A5B0021774C /* InappConfigResponseSettingsInvalid.json */; };
 		F31801FE2A386BE60021774C /* InappConfigResponseAbtestsInvalid.json in Resources */ = {isa = PBXBuildFile; fileRef = F31801FC2A386BE60021774C /* InappConfigResponseAbtestsInvalid.json */; };
 		F31801FF2A386BE60021774C /* InappConfigResponseMonitoringInvalid.json in Resources */ = {isa = PBXBuildFile; fileRef = F31801FD2A386BE60021774C /* InappConfigResponseMonitoringInvalid.json */; };
+		F331DC262A7BADE300222120 /* FailableDecodableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC252A7BADE300222120 /* FailableDecodableArray.swift */; };
+		F331DC2B2A7BC03600222120 /* InappValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC2A2A7BC03600222120 /* InappValidator.swift */; };
+		F331DC2E2A7BC08A00222120 /* InappForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC2D2A7BC08A00222120 /* InappForm.swift */; };
+		F331DC302A7BC09000222120 /* InappFormVariantValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC2F2A7BC09000222120 /* InappFormVariantValidator.swift */; };
+		F331DC332A7BC0C900222120 /* InappFormVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC322A7BC0C900222120 /* InappFormVariant.swift */; };
+		F331DC352A7BC11A00222120 /* InappFormVariantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC342A7BC11A00222120 /* InappFormVariantType.swift */; };
+		F331DC392A7BC23700222120 /* InappFormVariantContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC382A7BC23700222120 /* InappFormVariantContent.swift */; };
+		F331DC3C2A7BC2AB00222120 /* ContentBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC3B2A7BC2AB00222120 /* ContentBackground.swift */; };
+		F331DC3F2A7BC2DE00222120 /* ContentBackgroundLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC3E2A7BC2DD00222120 /* ContentBackgroundLayer.swift */; };
+		F331DC442A7BC30E00222120 /* ContentBackgroundLayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC432A7BC30E00222120 /* ContentBackgroundLayerType.swift */; };
+		F331DC462A7BC32D00222120 /* ContentBackgroundLayerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC452A7BC32D00222120 /* ContentBackgroundLayerAction.swift */; };
+		F331DC482A7BC34D00222120 /* ContentBackgroundLayerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC472A7BC34D00222120 /* ContentBackgroundLayerSource.swift */; };
+		F331DC4A2A7BC4F700222120 /* ContentBackgroundLayerValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC492A7BC4F700222120 /* ContentBackgroundLayerValidator.swift */; };
+		F331DC4D2A7BC5E300222120 /* LayerActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC4C2A7BC5E300222120 /* LayerActionType.swift */; };
+		F331DC4F2A7BC65B00222120 /* ContentBackgroundLayerActionValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC4E2A7BC65B00222120 /* ContentBackgroundLayerActionValidator.swift */; };
+		F331DC552A7BCFC200222120 /* LayerSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC542A7BCFC200222120 /* LayerSourceType.swift */; };
+		F331DC5D2A7C4E5200222120 /* ContentElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC5C2A7C4E5200222120 /* ContentElement.swift */; };
+		F331DC602A7C4EA400222120 /* ContentElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC5F2A7C4EA400222120 /* ContentElementType.swift */; };
+		F331DC622A7C4F7000222120 /* ContentElementValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC612A7C4F7000222120 /* ContentElementValidator.swift */; };
+		F331DC652A7C500A00222120 /* ContentElementSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC642A7C500A00222120 /* ContentElementSize.swift */; };
+		F331DC682A7C503200222120 /* ContentElementSizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC672A7C503200222120 /* ContentElementSizeType.swift */; };
+		F331DC6A2A7C509D00222120 /* ContentBackgroundLayerSourceValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC692A7C509D00222120 /* ContentBackgroundLayerSourceValidator.swift */; };
+		F331DC6D2A7C51F000222120 /* ContentElementPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC6C2A7C51F000222120 /* ContentElementPosition.swift */; };
+		F331DC702A7C521600222120 /* ContentElementPositionMargin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC6F2A7C521600222120 /* ContentElementPositionMargin.swift */; };
+		F331DC732A7C522E00222120 /* PositionMarginKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC722A7C522E00222120 /* PositionMarginKind.swift */; };
+		F331DC772A7C52CE00222120 /* ContentElementPositionMarginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC762A7C52CE00222120 /* ContentElementPositionMarginValidator.swift */; };
+		F331DC7A2A7C544E00222120 /* ContentElementGravity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC792A7C544E00222120 /* ContentElementGravity.swift */; };
 		F3482F172A65DBB7002A41EC /* MindboxURLHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F162A65DBB7002A41EC /* MindboxURLHandlerDelegate.swift */; };
 		F3482F192A65DBBD002A41EC /* MindboxPayloadCopierDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F182A65DBBD002A41EC /* MindboxPayloadCopierDelegate.swift */; };
 		F3482F1B2A65DC01002A41EC /* DefaultInappMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F1A2A65DC01002A41EC /* DefaultInappMessageDelegate.swift */; };
@@ -723,12 +748,37 @@
 		B3F4F98D268EEB4B0092EC3C /* LimitBenefitsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimitBenefitsResponse.swift; sourceTree = "<group>"; };
 		F30C6EF52A73B0DD0092B8BF /* InAppImageOnlyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppImageOnlyView.swift; sourceTree = "<group>"; };
 		F30C6EF72A73B0EE0092B8BF /* CrossView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossView.swift; sourceTree = "<group>"; };
-		F30C6EF92A78F8110092B8BF /* InappValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappValidator.swift; sourceTree = "<group>"; };
-		F30C6EFC2A790E4C0092B8BF /* InappDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappDecoder.swift; sourceTree = "<group>"; };
 		F31801F72A38649D0021774C /* InappConfigResponseValid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InappConfigResponseValid.json; sourceTree = "<group>"; };
 		F31801FA2A386A5B0021774C /* InappConfigResponseSettingsInvalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InappConfigResponseSettingsInvalid.json; sourceTree = "<group>"; };
 		F31801FC2A386BE60021774C /* InappConfigResponseAbtestsInvalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InappConfigResponseAbtestsInvalid.json; sourceTree = "<group>"; };
 		F31801FD2A386BE60021774C /* InappConfigResponseMonitoringInvalid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InappConfigResponseMonitoringInvalid.json; sourceTree = "<group>"; };
+		F331DC252A7BADE300222120 /* FailableDecodableArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailableDecodableArray.swift; sourceTree = "<group>"; };
+		F331DC2A2A7BC03600222120 /* InappValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappValidator.swift; sourceTree = "<group>"; };
+		F331DC2D2A7BC08A00222120 /* InappForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappForm.swift; sourceTree = "<group>"; };
+		F331DC2F2A7BC09000222120 /* InappFormVariantValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappFormVariantValidator.swift; sourceTree = "<group>"; };
+		F331DC322A7BC0C900222120 /* InappFormVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappFormVariant.swift; sourceTree = "<group>"; };
+		F331DC342A7BC11A00222120 /* InappFormVariantType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappFormVariantType.swift; sourceTree = "<group>"; };
+		F331DC382A7BC23700222120 /* InappFormVariantContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappFormVariantContent.swift; sourceTree = "<group>"; };
+		F331DC3B2A7BC2AB00222120 /* ContentBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBackground.swift; sourceTree = "<group>"; };
+		F331DC3E2A7BC2DD00222120 /* ContentBackgroundLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBackgroundLayer.swift; sourceTree = "<group>"; };
+		F331DC432A7BC30E00222120 /* ContentBackgroundLayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBackgroundLayerType.swift; sourceTree = "<group>"; };
+		F331DC452A7BC32D00222120 /* ContentBackgroundLayerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBackgroundLayerAction.swift; sourceTree = "<group>"; };
+		F331DC472A7BC34D00222120 /* ContentBackgroundLayerSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBackgroundLayerSource.swift; sourceTree = "<group>"; };
+		F331DC492A7BC4F700222120 /* ContentBackgroundLayerValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBackgroundLayerValidator.swift; sourceTree = "<group>"; };
+		F331DC4C2A7BC5E300222120 /* LayerActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerActionType.swift; sourceTree = "<group>"; };
+		F331DC4E2A7BC65B00222120 /* ContentBackgroundLayerActionValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBackgroundLayerActionValidator.swift; sourceTree = "<group>"; };
+		F331DC542A7BCFC200222120 /* LayerSourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerSourceType.swift; sourceTree = "<group>"; };
+		F331DC5C2A7C4E5200222120 /* ContentElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElement.swift; sourceTree = "<group>"; };
+		F331DC5F2A7C4EA400222120 /* ContentElementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElementType.swift; sourceTree = "<group>"; };
+		F331DC612A7C4F7000222120 /* ContentElementValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElementValidator.swift; sourceTree = "<group>"; };
+		F331DC642A7C500A00222120 /* ContentElementSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElementSize.swift; sourceTree = "<group>"; };
+		F331DC672A7C503200222120 /* ContentElementSizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElementSizeType.swift; sourceTree = "<group>"; };
+		F331DC692A7C509D00222120 /* ContentBackgroundLayerSourceValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentBackgroundLayerSourceValidator.swift; sourceTree = "<group>"; };
+		F331DC6C2A7C51F000222120 /* ContentElementPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElementPosition.swift; sourceTree = "<group>"; };
+		F331DC6F2A7C521600222120 /* ContentElementPositionMargin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElementPositionMargin.swift; sourceTree = "<group>"; };
+		F331DC722A7C522E00222120 /* PositionMarginKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionMarginKind.swift; sourceTree = "<group>"; };
+		F331DC762A7C52CE00222120 /* ContentElementPositionMarginValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElementPositionMarginValidator.swift; sourceTree = "<group>"; };
+		F331DC792A7C544E00222120 /* ContentElementGravity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElementGravity.swift; sourceTree = "<group>"; };
 		F3482F162A65DBB7002A41EC /* MindboxURLHandlerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindboxURLHandlerDelegate.swift; sourceTree = "<group>"; };
 		F3482F182A65DBBD002A41EC /* MindboxPayloadCopierDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindboxPayloadCopierDelegate.swift; sourceTree = "<group>"; };
 		F3482F1A2A65DC01002A41EC /* DefaultInappMessageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInappMessageDelegate.swift; sourceTree = "<group>"; };
@@ -1313,7 +1363,6 @@
 				F3A8B9992A3A471800E9C055 /* ABTestVariantsValidator.swift */,
 				F3A8B99D2A3A4FD600E9C055 /* ABTestValidator.swift */,
 				F3482F292A65DCFC002A41EC /* String+Extensions.swift */,
-				F30C6EF92A78F8110092B8BF /* InappValidator.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -1370,6 +1419,7 @@
 		84CC797E25CABABB00C062BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F331DC272A7BAE1200222120 /* Decoders */,
 				F397EEAB2A4456A900D48CEC /* MindboxError */,
 				3333C1DF2681EA4C00B60D84 /* NotificationPayload */,
 				3337E6A2265FAB39006949EB /* BaseResponse.swift */,
@@ -1521,7 +1571,6 @@
 		9B24FAB628C7554C00F10B5D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F30C6EFB2A790E3D0092B8BF /* Decoders */,
 				F39B67A32A3C6BCE005C0CCA /* CustomerSegment */,
 				F3A8B9A12A3A6DBF00E9C055 /* Config */,
 				A154E32F299E0F1600F8F074 /* InAppGeoResponse.swift */,
@@ -1876,14 +1925,6 @@
 			path = OSLogWritterTests;
 			sourceTree = "<group>";
 		};
-		F30C6EFB2A790E3D0092B8BF /* Decoders */ = {
-			isa = PBXGroup;
-			children = (
-				F30C6EFC2A790E4C0092B8BF /* InappDecoder.swift */,
-			);
-			path = Decoders;
-			sourceTree = "<group>";
-		};
 		F31801F92A386A350021774C /* ConfigResponse */ = {
 			isa = PBXGroup;
 			children = (
@@ -1893,6 +1934,208 @@
 				F31801F72A38649D0021774C /* InappConfigResponseValid.json */,
 			);
 			path = ConfigResponse;
+			sourceTree = "<group>";
+		};
+		F331DC272A7BAE1200222120 /* Decoders */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC252A7BADE300222120 /* FailableDecodableArray.swift */,
+			);
+			path = Decoders;
+			sourceTree = "<group>";
+		};
+		F331DC282A7BC00300222120 /* Inapp */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC292A7BC02900222120 /* InappModel */,
+			);
+			path = Inapp;
+			sourceTree = "<group>";
+		};
+		F331DC292A7BC02900222120 /* InappModel */ = {
+			isa = PBXGroup;
+			children = (
+				F3A8B9A62A3A705B00E9C055 /* InAppModel.swift */,
+				F331DC2A2A7BC03600222120 /* InappValidator.swift */,
+				F331DC2C2A7BC08200222120 /* InappForm */,
+			);
+			path = InappModel;
+			sourceTree = "<group>";
+		};
+		F331DC2C2A7BC08200222120 /* InappForm */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC2D2A7BC08A00222120 /* InappForm.swift */,
+				F331DC312A7BC0BF00222120 /* InappFormVariant */,
+			);
+			path = InappForm;
+			sourceTree = "<group>";
+		};
+		F331DC312A7BC0BF00222120 /* InappFormVariant */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC322A7BC0C900222120 /* InappFormVariant.swift */,
+				F331DC2F2A7BC09000222120 /* InappFormVariantValidator.swift */,
+				F331DC362A7BC1FF00222120 /* InappFormVariantType */,
+				F331DC372A7BC20F00222120 /* InappFormVariantContent */,
+			);
+			path = InappFormVariant;
+			sourceTree = "<group>";
+		};
+		F331DC362A7BC1FF00222120 /* InappFormVariantType */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC342A7BC11A00222120 /* InappFormVariantType.swift */,
+			);
+			path = InappFormVariantType;
+			sourceTree = "<group>";
+		};
+		F331DC372A7BC20F00222120 /* InappFormVariantContent */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC5B2A7C4E4A00222120 /* ContentElement */,
+				F331DC3A2A7BC27200222120 /* ContentBackground */,
+				F331DC382A7BC23700222120 /* InappFormVariantContent.swift */,
+			);
+			path = InappFormVariantContent;
+			sourceTree = "<group>";
+		};
+		F331DC3A2A7BC27200222120 /* ContentBackground */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC3B2A7BC2AB00222120 /* ContentBackground.swift */,
+				F331DC3D2A7BC2CF00222120 /* ContentBackgroundLayer */,
+			);
+			path = ContentBackground;
+			sourceTree = "<group>";
+		};
+		F331DC3D2A7BC2CF00222120 /* ContentBackgroundLayer */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC3E2A7BC2DD00222120 /* ContentBackgroundLayer.swift */,
+				F331DC492A7BC4F700222120 /* ContentBackgroundLayerValidator.swift */,
+				F331DC422A7BC30000222120 /* ContentBackgroundSource */,
+				F331DC412A7BC2F700222120 /* ContentBackgroundLayerAction */,
+				F331DC402A7BC2EF00222120 /* ContentBackgroundLayerType */,
+			);
+			path = ContentBackgroundLayer;
+			sourceTree = "<group>";
+		};
+		F331DC402A7BC2EF00222120 /* ContentBackgroundLayerType */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC432A7BC30E00222120 /* ContentBackgroundLayerType.swift */,
+			);
+			path = ContentBackgroundLayerType;
+			sourceTree = "<group>";
+		};
+		F331DC412A7BC2F700222120 /* ContentBackgroundLayerAction */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC4B2A7BC5DB00222120 /* LayerActionType */,
+				F331DC452A7BC32D00222120 /* ContentBackgroundLayerAction.swift */,
+				F331DC4E2A7BC65B00222120 /* ContentBackgroundLayerActionValidator.swift */,
+			);
+			path = ContentBackgroundLayerAction;
+			sourceTree = "<group>";
+		};
+		F331DC422A7BC30000222120 /* ContentBackgroundSource */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC692A7C509D00222120 /* ContentBackgroundLayerSourceValidator.swift */,
+				F331DC532A7BCFC200222120 /* LayerSourceType */,
+				F331DC472A7BC34D00222120 /* ContentBackgroundLayerSource.swift */,
+			);
+			path = ContentBackgroundSource;
+			sourceTree = "<group>";
+		};
+		F331DC4B2A7BC5DB00222120 /* LayerActionType */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC4C2A7BC5E300222120 /* LayerActionType.swift */,
+			);
+			path = LayerActionType;
+			sourceTree = "<group>";
+		};
+		F331DC532A7BCFC200222120 /* LayerSourceType */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC542A7BCFC200222120 /* LayerSourceType.swift */,
+			);
+			path = LayerSourceType;
+			sourceTree = "<group>";
+		};
+		F331DC5B2A7C4E4A00222120 /* ContentElement */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC5C2A7C4E5200222120 /* ContentElement.swift */,
+				F331DC612A7C4F7000222120 /* ContentElementValidator.swift */,
+				F331DC5E2A7C4E9700222120 /* ContentElementType */,
+				F331DC632A7C4FFD00222120 /* ContentElementSize */,
+				F331DC6B2A7C51E100222120 /* ContentElementPosition */,
+				F331DC782A7C543B00222120 /* ContentElementGravity */,
+			);
+			path = ContentElement;
+			sourceTree = "<group>";
+		};
+		F331DC5E2A7C4E9700222120 /* ContentElementType */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC5F2A7C4EA400222120 /* ContentElementType.swift */,
+			);
+			path = ContentElementType;
+			sourceTree = "<group>";
+		};
+		F331DC632A7C4FFD00222120 /* ContentElementSize */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC662A7C502800222120 /* Kind */,
+				F331DC642A7C500A00222120 /* ContentElementSize.swift */,
+			);
+			path = ContentElementSize;
+			sourceTree = "<group>";
+		};
+		F331DC662A7C502800222120 /* Kind */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC672A7C503200222120 /* ContentElementSizeType.swift */,
+			);
+			path = Kind;
+			sourceTree = "<group>";
+		};
+		F331DC6B2A7C51E100222120 /* ContentElementPosition */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC6C2A7C51F000222120 /* ContentElementPosition.swift */,
+				F331DC6E2A7C520500222120 /* ContentElementPositionMargin */,
+			);
+			path = ContentElementPosition;
+			sourceTree = "<group>";
+		};
+		F331DC6E2A7C520500222120 /* ContentElementPositionMargin */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC6F2A7C521600222120 /* ContentElementPositionMargin.swift */,
+				F331DC762A7C52CE00222120 /* ContentElementPositionMarginValidator.swift */,
+				F331DC712A7C522400222120 /* PositionMarginKind */,
+			);
+			path = ContentElementPositionMargin;
+			sourceTree = "<group>";
+		};
+		F331DC712A7C522400222120 /* PositionMarginKind */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC722A7C522E00222120 /* PositionMarginKind.swift */,
+			);
+			path = PositionMarginKind;
+			sourceTree = "<group>";
+		};
+		F331DC782A7C543B00222120 /* ContentElementGravity */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC792A7C544E00222120 /* ContentElementGravity.swift */,
+			);
+			path = ContentElementGravity;
 			sourceTree = "<group>";
 		};
 		F3482F142A65DBA0002A41EC /* InappMessagesDelegate */ = {
@@ -2076,10 +2319,10 @@
 		F3A8B9A12A3A6DBF00E9C055 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				F331DC282A7BC00300222120 /* Inapp */,
 				9BC24E7328F6953D00C2619C /* ConfigResponse.swift */,
 				F3A8B9A22A3A6E6900E9C055 /* SdkVersionModel.swift */,
 				F3A8B9A42A3A6F2800E9C055 /* MonitoringModel.swift */,
-				F3A8B9A62A3A705B00E9C055 /* InAppModel.swift */,
 				F3A8B9A82A3A713E00E9C055 /* SettingsModel.swift */,
 				F3A8B9AA2A3A719C00E9C055 /* ABTestModel.swift */,
 			);
@@ -2410,9 +2653,11 @@
 				33072F442664CC6C001F1AB2 /* IssuedPointOfContactResponse.swift in Sources */,
 				A17958762978AEC600609E91 /* OrTargetingChecker.swift in Sources */,
 				334F3AE1264C199900A6AC00 /* PromoCodeRequest.swift in Sources */,
+				F331DC4F2A7BC65B00222120 /* ContentBackgroundLayerActionValidator.swift in Sources */,
 				A17958792978AEC600609E91 /* GeoTargetingChecker.swift in Sources */,
 				33BEE80D2681EB7700993720 /* NotificationDecoder.swift in Sources */,
 				840042A12614CE0000CA17C5 /* ClickNotificationManager.swift in Sources */,
+				F331DC332A7BC0C900222120 /* InappFormVariant.swift in Sources */,
 				9B24FABD28C757A700F10B5D /* InAppResponse.swift in Sources */,
 				334F3AED264C199900A6AC00 /* SubscriptionRequest.swift in Sources */,
 				334F3AF4264C199900A6AC00 /* ProductRequest.swift in Sources */,
@@ -2425,6 +2670,7 @@
 				A192786C29D3A24000CDB53D /* ProductIDChecker.swift in Sources */,
 				337A473A26550FDA000DC613 /* CustomFields.swift in Sources */,
 				B3A6255C268A025600B6A3B7 /* NearestExpirationResponse.swift in Sources */,
+				F331DC6D2A7C51F000222120 /* ContentElementPosition.swift in Sources */,
 				84A312BD25DA651C0096A017 /* UIBackgroundTaskManager.swift in Sources */,
 				F3A8B99A2A3A471800E9C055 /* ABTestVariantsValidator.swift in Sources */,
 				33E42E5C268323E60046CBCB /* CashdeskRequest.swift in Sources */,
@@ -2459,15 +2705,18 @@
 				84B625D925C9558E00AB6228 /* MBPersistenceStorage.swift in Sources */,
 				84C65E5E25D4FBA3008996FA /* MobileApplicationInstalled.swift in Sources */,
 				A17958772978AEC600609E91 /* TrueTargetingChecker.swift in Sources */,
+				F331DC5D2A7C4E5200222120 /* ContentElement.swift in Sources */,
 				B3F4F98A268EEB360092EC3C /* PeriodTypeResponse.swift in Sources */,
 				6FDD143D266F7BEB00A50C35 /* ItemResponse.swift in Sources */,
 				3333D7BE265E56F2004279B0 /* OperationResponseType.swift in Sources */,
+				F331DC352A7BC11A00222120 /* InappFormVariantType.swift in Sources */,
 				334F3AF2264C199900A6AC00 /* LineRequest.swift in Sources */,
 				334F3AF7264C199900A6AC00 /* CustomerActionRequest.swift in Sources */,
 				F39B67A22A3C6AF4005C0CCA /* SegmentationService.swift in Sources */,
 				334F3AEC264C199900A6AC00 /* RequestedPromotionRequest.swift in Sources */,
 				84DEE8B125CC042A00C98CC7 /* MBDatabaseError.swift in Sources */,
 				A179587C2978AED800609E91 /* GeoTargeting.swift in Sources */,
+				F331DC772A7C52CE00222120 /* ContentElementPositionMarginValidator.swift in Sources */,
 				3333C1E12681EA4D00B60D84 /* NotificationsPayloads.swift in Sources */,
 				F37613D52A66973C009F2EE4 /* ModalPresentationStrategy.swift in Sources */,
 				9B4F9DFB28D088AE002C9CF0 /* InAppMessageViewController.swift in Sources */,
@@ -2496,10 +2745,12 @@
 				6FDD1451266F7C8000A50C35 /* UsageServiceStatusResponse.swift in Sources */,
 				F3A8B9A92A3A713E00E9C055 /* SettingsModel.swift in Sources */,
 				9B24FAB528C751E400F10B5D /* InAppImagesStorage.swift in Sources */,
-				F30C6EFD2A790E4C0092B8BF /* InappDecoder.swift in Sources */,
+				F331DC482A7BC34D00222120 /* ContentBackgroundLayerSource.swift in Sources */,
 				F3A8B9A32A3A6E6900E9C055 /* SdkVersionModel.swift in Sources */,
+				F331DC652A7C500A00222120 /* ContentElementSize.swift in Sources */,
 				3333C1DE2681E9F300B60D84 /* URLRequestBuilder.swift in Sources */,
 				334F3AF5264C199900A6AC00 /* CodableDictionary.swift in Sources */,
+				F331DC3C2A7BC2AB00222120 /* ContentBackground.swift in Sources */,
 				334F3AF3264C199900A6AC00 /* AreaRequest.swift in Sources */,
 				33B1C976265B910F00E293F8 /* SwiftyJSON.swift in Sources */,
 				F397EEAD2A4456C300D48CEC /* ProtocolError.swift in Sources */,
@@ -2516,12 +2767,15 @@
 				33072F302664C2E4001F1AB2 /* SubscriptionResponse.swift in Sources */,
 				F30C6EF82A73B0EE0092B8BF /* CrossView.swift in Sources */,
 				A153E03B29BAFE01003C34D4 /* CustomOperationTargeting.swift in Sources */,
+				F331DC6A2A7C509D00222120 /* ContentBackgroundLayerSourceValidator.swift in Sources */,
 				9BC24E7528F6953D00C2619C /* ConfigResponse.swift in Sources */,
 				33072F482664CCBA001F1AB2 /* PoolResponse.swift in Sources */,
 				337C79562656533F0092B580 /* ViewProductRequest.swift in Sources */,
 				6FDD145F266F7CD900A50C35 /* DiscountResponse.swift in Sources */,
+				F331DC702A7C521600222120 /* ContentElementPositionMargin.swift in Sources */,
 				F30C6EF62A73B0DD0092B8BF /* InAppImageOnlyView.swift in Sources */,
 				33072F462664CC9A001F1AB2 /* UsedPointOfContactResponse.swift in Sources */,
+				F331DC262A7BADE300222120 /* FailableDecodableArray.swift in Sources */,
 				F397EEB12A44571300D48CEC /* UnknownDecodable.swift in Sources */,
 				33072F382664C577001F1AB2 /* RecommendationResponse.swift in Sources */,
 				337A47362654F995000DC613 /* OperationBodyRequest.swift in Sources */,
@@ -2533,11 +2787,15 @@
 				84BAEF8225D54919002E8A26 /* BodyDecoder.swift in Sources */,
 				847F580F25C88E8C00147A9A /* MBNetworkFetcher.swift in Sources */,
 				F3A8B9AB2A3A719C00E9C055 /* ABTestModel.swift in Sources */,
+				F331DC2B2A7BC03600222120 /* InappValidator.swift in Sources */,
 				33072F342664C3E1001F1AB2 /* ProductResponse.swift in Sources */,
-				F30C6EFA2A78F8110092B8BF /* InappValidator.swift in Sources */,
 				33072F3E2664C7B5001F1AB2 /* DiscountCardResponse.swift in Sources */,
+				F331DC7A2A7C544E00222120 /* ContentElementGravity.swift in Sources */,
+				F331DC302A7BC09000222120 /* InappFormVariantValidator.swift in Sources */,
 				8410681325ECDC73004701C2 /* DatabaseLoader.swift in Sources */,
 				9B24FAAA28C74B6A00F10B5D /* InAppPresentationManager.swift in Sources */,
+				F331DC622A7C4F7000222120 /* ContentElementValidator.swift in Sources */,
+				F331DC682A7C503200222120 /* ContentElementSizeType.swift in Sources */,
 				A1D017F22976CC9400CD9F99 /* SegmentTargeting.swift in Sources */,
 				9BC24E7428F6953D00C2619C /* InAppConfigurationAPI.swift in Sources */,
 				F397EEB32A44572400D48CEC /* ValidationError.swift in Sources */,
@@ -2551,6 +2809,7 @@
 				840C387225CC1AF200D50183 /* CDEvent+CoreDataClass.swift in Sources */,
 				B3A62560268A052C00B6A3B7 /* PromoActionsResponse.swift in Sources */,
 				6FDD1457266F7CAB00A50C35 /* PlaceholderResponse.swift in Sources */,
+				F331DC4D2A7BC5E300222120 /* LayerActionType.swift in Sources */,
 				B3F4F97C268EEA950092EC3C /* StatusResponse.swift in Sources */,
 				9B24FAAE28C74BA500F10B5D /* InAppCoreManager.swift in Sources */,
 				A15D701A29AF8142007131E7 /* SDKLogsManager.swift in Sources */,
@@ -2569,6 +2828,7 @@
 				84DC4A0725D27D6000D5D758 /* UNAuthorizationStatusProvider.swift in Sources */,
 				F3D818B02A3885AD0002957C /* ABTestDeviceMixer.swift in Sources */,
 				3328FE4226303F2F000A30D0 /* String+Regex.swift in Sources */,
+				F331DC2E2A7BC08A00222120 /* InappForm.swift in Sources */,
 				F37613D12A6696A6009F2EE4 /* PresentationDisplayUseCase.swift in Sources */,
 				33072F322664C357001F1AB2 /* ProductListResponse.swift in Sources */,
 				9B24FAB128C74BD200F10B5D /* InAppConfigurationManager.swift in Sources */,
@@ -2590,11 +2850,14 @@
 				3337E6A52660D878006949EB /* OperationResponse.swift in Sources */,
 				B3F4F98E268EEB4B0092EC3C /* LimitBenefitsResponse.swift in Sources */,
 				9B4F9DF928D088A9002C9CF0 /* InAppConfig.swift in Sources */,
+				F331DC4A2A7BC4F700222120 /* ContentBackgroundLayerValidator.swift in Sources */,
+				F331DC392A7BC23700222120 /* InappFormVariantContent.swift in Sources */,
 				33C81EA4264145CD00863380 /* TimerManager.swift in Sources */,
 				B3F4F981268EEAC90092EC3C /* AmountBenefisTypeResponse.swift in Sources */,
 				A11FBE8929DD76BF00F5FB7B /* InAppMessagesEventSender.swift in Sources */,
 				F37613CB2A669630009F2EE4 /* ViewFactoryProtocol.swift in Sources */,
 				33072F422664CB81001F1AB2 /* PromoCodeResponse.swift in Sources */,
+				F331DC3F2A7BC2DE00222120 /* ContentBackgroundLayer.swift in Sources */,
 				339ACE50262DAC74003590D2 /* CustomEvent.swift in Sources */,
 				314B390025AEE96F00E947B9 /* CoreController.swift in Sources */,
 				84B625E425C988FA00AB6228 /* URLValidator.swift in Sources */,
@@ -2604,6 +2867,7 @@
 				330D8CCB26579521005106D5 /* DiscountTypeRequest.swift in Sources */,
 				A184654729C32FEF00E64780 /* CategoryIDChecker.swift in Sources */,
 				A192786729D389EE00CDB53D /* ProductIDTargeting.swift in Sources */,
+				F331DC552A7BCFC200222120 /* LayerSourceType.swift in Sources */,
 				6FDD1445266F7C2200A50C35 /* CouponResponse.swift in Sources */,
 				F78E92EF282E63320003B4A3 /* DispatchSemaphore.swift in Sources */,
 				314B38FD25AEE8B200E947B9 /* MBConfiguration.swift in Sources */,
@@ -2618,6 +2882,7 @@
 				A1A916E129C9053200D59D9E /* CategoryIDInChecker.swift in Sources */,
 				9B4F9DF228D088A0002C9CF0 /* InAppsCheckRequest.swift in Sources */,
 				6FDD1441266F7C0600A50C35 /* AppliedPromotionTypeResponse.swift in Sources */,
+				F331DC602A7C4EA400222120 /* ContentElementType.swift in Sources */,
 				F3482F1F2A65DC20002A41EC /* CopyInappMessageDelegate.swift in Sources */,
 				33EBF0B0264E6283002A35D5 /* SessionManager.swift in Sources */,
 				337C7952265646D10092B580 /* OperationBodyRequestType.swift in Sources */,
@@ -2630,9 +2895,12 @@
 				A184654529C310F100E64780 /* InAppOperationJSONModel.swift in Sources */,
 				A154E330299E0F1600F8F074 /* InAppGeoResponse.swift in Sources */,
 				F39B67A92A3C72E5005C0CCA /* ImageDownloadService.swift in Sources */,
+				F331DC442A7BC30E00222120 /* ContentBackgroundLayerType.swift in Sources */,
 				F3A8B9A72A3A705B00E9C055 /* InAppModel.swift in Sources */,
 				84CC799725CACF5500C062BD /* MBEventRepository.swift in Sources */,
+				F331DC732A7C522E00222120 /* PositionMarginKind.swift in Sources */,
 				F3482F172A65DBB7002A41EC /* MindboxURLHandlerDelegate.swift in Sources */,
+				F331DC462A7BC32D00222120 /* ContentBackgroundLayerAction.swift in Sources */,
 				847F581F25C8A3F500147A9A /* HTTPTypealiases.swift in Sources */,
 				33BEE8172681EC5F00993720 /* EventRoute.swift in Sources */,
 				317054CB25AF189800AE624C /* PersistenceStorage.swift in Sources */,
