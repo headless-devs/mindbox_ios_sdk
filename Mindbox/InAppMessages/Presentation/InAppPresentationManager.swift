@@ -64,33 +64,38 @@ final class InAppPresentationManager: InAppPresentationManagerProtocol {
         onError: @escaping (InAppPresentationError) -> Void
     ) {
         DispatchQueue.main.async { [weak self] in
-            let redirectInfo = InAppMessageUIModel.InAppRedirect(
-                redirectUrl: inAppFormData.redirectUrl,
-                payload: inAppFormData.intentPayload
-            )
-
-            let inAppUIModel = InAppMessageUIModel(
-                inAppId: inAppFormData.inAppId,
-                image: inAppFormData.image,
-                redirect: redirectInfo
-            )
+            guard let type = self?.getType(inappType: inAppFormData.content.type) else {
+                return
+            }
             
-            self?.displayUseCase.changeType(type: .modal)
+            self?.displayUseCase.changeType(type: type)
             self?.displayUseCase.presentInAppUIModel(
-                inAppUIModel: inAppUIModel,
+                inAppUIModel: inAppFormData,
                 onPresented: onPresented,
                 onTapAction: { [weak self] in
-                    self?.actionUseCase.onTapAction(
-                        inApp: inAppUIModel,
-                        onTap: onTapAction,
-                        close: {
-                            self?.displayUseCase.dismissInAppUIModel(onClose: onPresentationCompleted)
-                        })
+                    print("")
+//                    self?.actionUseCase.onTapAction(
+//                        inApp: inAppFormData,
+//                        onTap: onTapAction,
+//                        close: {
+//                            self?.displayUseCase.dismissInAppUIModel(onClose: onPresentationCompleted)
+//                        })
                 },
                 onClose: {
                     self?.displayUseCase.dismissInAppUIModel(onClose: onPresentationCompleted)
                 }
             )
+        }
+    }
+    
+    func getType(inappType: InappFormVariantType) -> ViewPresentationType? {
+        switch inappType {
+        case .modal:
+            return .modal
+        case .snackbar:
+            return .topSnackbar
+        case .unknown:
+            return nil
         }
     }
 }

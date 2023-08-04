@@ -14,9 +14,9 @@ final class PresentationDisplayUseCase {
     private var presentationStrategy: PresentationStrategyProtocol?
     private var presentedVC: UIViewController?
     private var viewFactory: ViewFactoryProtocol?
-    private var model: InAppMessageUIModel?
+    private var model: InAppFormData?
 
-    func presentInAppUIModel(inAppUIModel: InAppMessageUIModel, onPresented: @escaping () -> Void, onTapAction: @escaping () -> Void, onClose: @escaping () -> Void) {
+    func presentInAppUIModel(inAppUIModel: InAppFormData, onPresented: @escaping () -> Void, onTapAction: @escaping () -> Void, onClose: @escaping () -> Void) {
         guard let window = presentationStrategy?.getWindow() else {
             Logger.common(message: "In-app modal window creating failed")
             return
@@ -31,7 +31,7 @@ final class PresentationDisplayUseCase {
         }
         
         presentedVC = viewController
-        presentationStrategy?.present(inAppUIModel: inAppUIModel, in: window, using: viewController)
+        presentationStrategy?.present(id: inAppUIModel.inAppId, in: window, using: viewController)
     }
 
     func dismissInAppUIModel(onClose: @escaping () -> Void) {

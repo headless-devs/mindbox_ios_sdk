@@ -10,6 +10,6 @@ import Foundation
 
 struct ContentElementSize: Decodable, Equatable {
     let kind: ContentElementSizeKind
-    let width: Decimal
-    let height: Decimal
+    let width: Double
+    let height: Double
 }

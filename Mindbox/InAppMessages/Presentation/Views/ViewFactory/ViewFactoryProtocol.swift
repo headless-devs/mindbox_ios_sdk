@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 protocol ViewFactoryProtocol {
-    func create(inAppUIModel: InAppMessageUIModel,
+    func create(inAppUIModel: InAppFormData,
                 onPresented: @escaping () -> Void,
                 onTapAction: @escaping () -> Void,
                 onClose: @escaping () -> Void) -> UIViewController

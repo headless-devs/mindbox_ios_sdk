@@ -10,7 +10,6 @@ import Foundation
 
 enum ContentBackgroundLayerType: String, Decodable, Equatable {
     case image
-    case internet
     case unknown
     
     init(from decoder: Decoder) throws {

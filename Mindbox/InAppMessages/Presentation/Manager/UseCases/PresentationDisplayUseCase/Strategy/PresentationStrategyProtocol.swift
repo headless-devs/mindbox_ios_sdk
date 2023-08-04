@@ -10,6 +10,6 @@ import UIKit
 
 protocol PresentationStrategyProtocol {
     func getWindow() -> UIWindow?
-    func present(inAppUIModel: InAppMessageUIModel, in window: UIWindow, using viewController: UIViewController)
+    func present(id: String, in window: UIWindow, using viewController: UIViewController)
     func dismiss(viewController: UIViewController)
 }

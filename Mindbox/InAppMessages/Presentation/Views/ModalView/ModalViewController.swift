@@ -9,12 +9,15 @@ import UIKit
 
 final class ModalViewController: UIViewController {
     
-    var crossView: CrossView?
     var inAppView: InAppImageOnlyView?
-    var crossSize: CGFloat = 24
+    var layers = [UIView]()
+    var elements = [UIView]()
+    private let elementFactories: [ContentElementType: ElementFactory] = [
+        .closeButton: CloseButtonElementFactory()
+    ]
 
     init(
-        inAppUIModel: InAppMessageUIModel,
+        inAppUIModel: InAppFormData,
         onPresented: @escaping () -> Void,
         onTapAction: @escaping () -> Void,
         onClose: @escaping () -> Void
@@ -30,7 +33,7 @@ final class ModalViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private let inAppUIModel: InAppMessageUIModel
+    private let inAppUIModel: InAppFormData
     private let onPresented: () -> Void
     private let onClose: () -> Void
     private let onTapAction: () -> Void
@@ -38,18 +41,18 @@ final class ModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black.withAlphaComponent(0.2)
+        setupLayers()
         
-        inAppView = InAppImageOnlyView(uiModel: inAppUIModel)
-        crossView = CrossView(lineColorHex: "000000", lineWidth: 1)
-        
-        guard let inAppView = inAppView,
-              let crossView = crossView else {
+        inAppView = InAppImageOnlyView(image: inAppUIModel.image)
+        guard let inAppView = inAppView else {
             return
         }
+        
         let onTapDimmedViewGesture = UITapGestureRecognizer(target: self, action: #selector(onTapDimmedView))
         view.addGestureRecognizer(onTapDimmedViewGesture)
         view.isUserInteractionEnabled = true
         view.addSubview(inAppView)
+        layers.append(inAppView)
         
         inAppView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -60,35 +63,16 @@ final class ModalViewController: UIViewController {
         ])
         let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapImage))
         inAppView.addGestureRecognizer(imageTapGestureRecognizer)
-
-        inAppView.addSubview(crossView)
-        crossView.isUserInteractionEnabled = true
-
-        let closeRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onCloseButton))
-        closeRecognizer.minimumPressDuration = 0
-        crossView.addGestureRecognizer(closeRecognizer)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        guard let inAppView = inAppView,
-              let crossView = crossView else {
+        guard let inAppView = inAppView else {
             return
         }
         
-        let trailingOffsetPercent: CGFloat = 0.03
-        let topOffsetPercent: CGFloat = 0.03
-
-        let horizontalOffset = (inAppView.frame.width - crossSize) * trailingOffsetPercent
-        let verticalOffset = (inAppView.frame.height - crossSize) * topOffsetPercent
-        crossView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            crossView.trailingAnchor.constraint(equalTo: inAppView.trailingAnchor, constant: -horizontalOffset),
-            crossView.topAnchor.constraint(equalTo: inAppView.topAnchor, constant: verticalOffset),
-            crossView.widthAnchor.constraint(equalToConstant: crossSize),
-            crossView.heightAnchor.constraint(equalToConstant: crossSize)
-        ])
+        setupElements()
     }
 
     private var viewWillAppearWasCalled = false
@@ -99,8 +83,8 @@ final class ModalViewController: UIViewController {
         onPresented()
     }
     
-    @objc private func onCloseButton(_ gesture: UILongPressGestureRecognizer) {
-        guard let crossView = crossView else {
+    @objc func onCloseButton(_ gesture: UILongPressGestureRecognizer) {
+        guard let crossView = elements.first else {
             return
         }
         
@@ -117,5 +101,31 @@ final class ModalViewController: UIViewController {
 
     @objc private func onTapImage() {
         onTapAction()
+    }
+    
+    private func setupLayers() {
+        
+    }
+    
+    private func setupElements() {
+        guard inAppUIModel.content.type == .modal else  {
+            return
+        }
+        
+        guard let elements = inAppUIModel.content.content?.elements?.elements,
+              let inappView = layers.first else {
+            return
+        }
+        
+        for element in elements {
+            if let factory = elementFactories[element.type] {
+                let elementView = factory.create(from: element, in: inappView, with: self)
+                if let elementView = elementView {
+                    self.elements.append(elementView)
+                    inappView.addSubview(elementView)
+                    factory.setupConstraints(for: elementView, from: element, in: inappView)
+                }
+            }
+        }
     }
 }

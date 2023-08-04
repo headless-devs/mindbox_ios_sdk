@@ -12,7 +12,7 @@ class ModalViewFactory: ViewFactoryProtocol {
 
     var myViewController: UIViewController?
     
-    func create(inAppUIModel: InAppMessageUIModel,
+    func create(inAppUIModel: InAppFormData,
                 onPresented: @escaping () -> Void,
                 onTapAction: @escaping () -> Void,
                 onClose: @escaping () -> Void) -> UIViewController {

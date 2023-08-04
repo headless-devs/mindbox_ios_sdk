@@ -208,7 +208,7 @@
 		9B4F9DF328D088A0002C9CF0 /* InAppFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4F9DF128D088A0002C9CF0 /* InAppFormData.swift */; };
 		9B4F9DF828D088A9002C9CF0 /* InAppConfigutationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4F9DF528D088A8002C9CF0 /* InAppConfigutationMapper.swift */; };
 		9B4F9DF928D088A9002C9CF0 /* InAppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4F9DF628D088A9002C9CF0 /* InAppConfig.swift */; };
-		9B4F9DFB28D088AE002C9CF0 /* InAppMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4F9DFA28D088AE002C9CF0 /* InAppMessageViewController.swift */; };
+		9B4F9DFB28D088AE002C9CF0 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4F9DFA28D088AE002C9CF0 /* ModalViewController.swift */; };
 		9B4F9E0528D0945F002C9CF0 /* InAppCoreManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4F9E0428D0945F002C9CF0 /* InAppCoreManagerMock.swift */; };
 		9B52570728D1AF880029B1BC /* InAppPresentationManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B52570628D1AF880029B1BC /* InAppPresentationManagerMock.swift */; };
 		9B9C95312921116F00BB29DA /* UUIDDebugService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C952F2921116F00BB29DA /* UUIDDebugService.swift */; };
@@ -337,6 +337,8 @@
 		F331DC732A7C522E00222120 /* PositionMarginKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC722A7C522E00222120 /* PositionMarginKind.swift */; };
 		F331DC772A7C52CE00222120 /* ContentElementPositionMarginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC762A7C52CE00222120 /* ContentElementPositionMarginValidator.swift */; };
 		F331DC7A2A7C544E00222120 /* ContentElementGravity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC792A7C544E00222120 /* ContentElementGravity.swift */; };
+		F331DC7D2A7D0A3900222120 /* ElementFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC7C2A7D0A3900222120 /* ElementFactory.swift */; };
+		F331DC7F2A7D0C1E00222120 /* CloseButtonElementFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC7E2A7D0C1E00222120 /* CloseButtonElementFactory.swift */; };
 		F3482F172A65DBB7002A41EC /* MindboxURLHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F162A65DBB7002A41EC /* MindboxURLHandlerDelegate.swift */; };
 		F3482F192A65DBBD002A41EC /* MindboxPayloadCopierDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F182A65DBBD002A41EC /* MindboxPayloadCopierDelegate.swift */; };
 		F3482F1B2A65DC01002A41EC /* DefaultInappMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F1A2A65DC01002A41EC /* DefaultInappMessageDelegate.swift */; };
@@ -649,7 +651,7 @@
 		9B4F9DF128D088A0002C9CF0 /* InAppFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppFormData.swift; sourceTree = "<group>"; };
 		9B4F9DF528D088A8002C9CF0 /* InAppConfigutationMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppConfigutationMapper.swift; sourceTree = "<group>"; };
 		9B4F9DF628D088A9002C9CF0 /* InAppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppConfig.swift; sourceTree = "<group>"; };
-		9B4F9DFA28D088AE002C9CF0 /* InAppMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppMessageViewController.swift; sourceTree = "<group>"; };
+		9B4F9DFA28D088AE002C9CF0 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		9B4F9E0428D0945F002C9CF0 /* InAppCoreManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppCoreManagerMock.swift; sourceTree = "<group>"; };
 		9B52570628D1AF880029B1BC /* InAppPresentationManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppPresentationManagerMock.swift; sourceTree = "<group>"; };
 		9B9C952F2921116F00BB29DA /* UUIDDebugService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDDebugService.swift; sourceTree = "<group>"; };
@@ -779,6 +781,8 @@
 		F331DC722A7C522E00222120 /* PositionMarginKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionMarginKind.swift; sourceTree = "<group>"; };
 		F331DC762A7C52CE00222120 /* ContentElementPositionMarginValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElementPositionMarginValidator.swift; sourceTree = "<group>"; };
 		F331DC792A7C544E00222120 /* ContentElementGravity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElementGravity.swift; sourceTree = "<group>"; };
+		F331DC7C2A7D0A3900222120 /* ElementFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementFactory.swift; sourceTree = "<group>"; };
+		F331DC7E2A7D0C1E00222120 /* CloseButtonElementFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonElementFactory.swift; sourceTree = "<group>"; };
 		F3482F162A65DBB7002A41EC /* MindboxURLHandlerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindboxURLHandlerDelegate.swift; sourceTree = "<group>"; };
 		F3482F182A65DBBD002A41EC /* MindboxPayloadCopierDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindboxPayloadCopierDelegate.swift; sourceTree = "<group>"; };
 		F3482F1A2A65DC01002A41EC /* DefaultInappMessageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInappMessageDelegate.swift; sourceTree = "<group>"; };
@@ -2138,6 +2142,15 @@
 			path = ContentElementGravity;
 			sourceTree = "<group>";
 		};
+		F331DC7B2A7D0A3200222120 /* ElementFactory */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC7C2A7D0A3900222120 /* ElementFactory.swift */,
+				F331DC7E2A7D0C1E00222120 /* CloseButtonElementFactory.swift */,
+			);
+			path = ElementFactory;
+			sourceTree = "<group>";
+		};
 		F3482F142A65DBA0002A41EC /* InappMessagesDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -2163,6 +2176,7 @@
 		F37613C12A669295009F2EE4 /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				F331DC7B2A7D0A3200222120 /* ElementFactory */,
 				F30C6EF72A73B0EE0092B8BF /* CrossView.swift */,
 				F30C6EF52A73B0DD0092B8BF /* InAppImageOnlyView.swift */,
 			);
@@ -2172,7 +2186,7 @@
 		F37613C42A6692DB009F2EE4 /* ModalView */ = {
 			isa = PBXGroup;
 			children = (
-				9B4F9DFA28D088AE002C9CF0 /* InAppMessageViewController.swift */,
+				9B4F9DFA28D088AE002C9CF0 /* ModalViewController.swift */,
 			);
 			path = ModalView;
 			sourceTree = "<group>";
@@ -2667,6 +2681,7 @@
 				31A20D4C25B6E0D700AAA0A3 /* MindboxErrors.swift in Sources */,
 				334F3ADF264C199900A6AC00 /* SubViewProductRequest.swift in Sources */,
 				6FDD1463266F7CED00A50C35 /* ProductElementReponse.swift in Sources */,
+				F331DC7D2A7D0A3900222120 /* ElementFactory.swift in Sources */,
 				A192786C29D3A24000CDB53D /* ProductIDChecker.swift in Sources */,
 				337A473A26550FDA000DC613 /* CustomFields.swift in Sources */,
 				B3A6255C268A025600B6A3B7 /* NearestExpirationResponse.swift in Sources */,
@@ -2685,6 +2700,7 @@
 				84F565212628304A00269FD6 /* TrackVisit.swift in Sources */,
 				337A473C265510AA000DC613 /* IDS.swift in Sources */,
 				317F1FD525B879B200B54346 /* MBUtilitiesFetcher.swift in Sources */,
+				F331DC7F2A7D0C1E00222120 /* CloseButtonElementFactory.swift in Sources */,
 				337A473E265528B5000DC613 /* MBDate.swift in Sources */,
 				F3A8B99E2A3A4FD600E9C055 /* ABTestValidator.swift in Sources */,
 				334F3AE0264C199900A6AC00 /* ViewProductCategoryRequest.swift in Sources */,
@@ -2719,7 +2735,7 @@
 				F331DC772A7C52CE00222120 /* ContentElementPositionMarginValidator.swift in Sources */,
 				3333C1E12681EA4D00B60D84 /* NotificationsPayloads.swift in Sources */,
 				F37613D52A66973C009F2EE4 /* ModalPresentationStrategy.swift in Sources */,
-				9B4F9DFB28D088AE002C9CF0 /* InAppMessageViewController.swift in Sources */,
+				9B4F9DFB28D088AE002C9CF0 /* ModalViewController.swift in Sources */,
 				334F3AE7264C199900A6AC00 /* CatalogProductListRequest.swift in Sources */,
 				B3A625562689FDD400B6A3B7 /* BalanceResponse.swift in Sources */,
 				6FDD1459266F7CB700A50C35 /* ContentResponse.swift in Sources */,
