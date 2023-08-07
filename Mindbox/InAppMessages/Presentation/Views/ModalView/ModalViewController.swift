@@ -9,17 +9,20 @@ import UIKit
 
 final class ModalViewController: UIViewController {
     
-    var inAppView: InAppImageOnlyView?
     var layers = [UIView]()
     var elements = [UIView]()
     private let elementFactories: [ContentElementType: ElementFactory] = [
         .closeButton: CloseButtonElementFactory()
     ]
+    
+    private let layersFactories: [ContentBackgroundLayerType: LayerFactory] = [
+        .image: ImageLayerFactory()
+    ]
 
     init(
         inAppUIModel: InAppFormData,
         onPresented: @escaping () -> Void,
-        onTapAction: @escaping () -> Void,
+        onTapAction: @escaping (ContentBackgroundLayerAction?) -> Void,
         onClose: @escaping () -> Void
     ) {
         self.inAppUIModel = inAppUIModel
@@ -36,42 +39,20 @@ final class ModalViewController: UIViewController {
     private let inAppUIModel: InAppFormData
     private let onPresented: () -> Void
     private let onClose: () -> Void
-    private let onTapAction: () -> Void
+    private let onTapAction: (ContentBackgroundLayerAction?) -> Void
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black.withAlphaComponent(0.2)
-        setupLayers()
-        
-        inAppView = InAppImageOnlyView(image: inAppUIModel.image)
-        guard let inAppView = inAppView else {
-            return
-        }
-        
         let onTapDimmedViewGesture = UITapGestureRecognizer(target: self, action: #selector(onTapDimmedView))
         view.addGestureRecognizer(onTapDimmedViewGesture)
         view.isUserInteractionEnabled = true
-        view.addSubview(inAppView)
-        layers.append(inAppView)
         
-        inAppView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            inAppView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            inAppView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            inAppView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            inAppView.widthAnchor.constraint(equalTo: inAppView.heightAnchor, multiplier: 3 / 4)
-        ])
-        let imageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTapImage))
-        inAppView.addGestureRecognizer(imageTapGestureRecognizer)
+        setupLayers()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        guard let inAppView = inAppView else {
-            return
-        }
-        
         setupElements()
     }
 
@@ -84,7 +65,7 @@ final class ModalViewController: UIViewController {
     }
     
     @objc func onCloseButton(_ gesture: UILongPressGestureRecognizer) {
-        guard let crossView = elements.first else {
+        guard let crossView = gesture.view else {
             return
         }
         
@@ -99,12 +80,34 @@ final class ModalViewController: UIViewController {
         onClose()
     }
 
-    @objc private func onTapImage() {
-        onTapAction()
+    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
+        guard let imageView = sender.view as? InAppImageOnlyView else {
+            return
+        }
+        
+        let action = imageView.action
+        onTapAction(action)
     }
     
     private func setupLayers() {
+        guard inAppUIModel.content.type == .modal else  {
+            return
+        }
         
+        guard let layers = inAppUIModel.content.content?.background.layers.elements else {
+            return
+        }
+        
+        for layer in layers {
+            if let factory = layersFactories[layer.type] {
+                let layerView = factory.create(from: inAppUIModel.image, action: layer.action, in: view, with: self)
+                if let layerView = layerView {
+                    self.layers.append(layerView)
+                    view.addSubview(layerView)
+                    factory.setupConstraints(for: layerView, in: view)
+                }
+            }
+        }
     }
     
     private func setupElements() {
@@ -113,7 +116,7 @@ final class ModalViewController: UIViewController {
         }
         
         guard let elements = inAppUIModel.content.content?.elements?.elements,
-              let inappView = layers.first else {
+              let inappView = layers.first(where: { $0 is InAppImageOnlyView }) else {
             return
         }
         

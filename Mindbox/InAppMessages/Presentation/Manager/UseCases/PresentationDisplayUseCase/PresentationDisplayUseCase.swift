@@ -16,7 +16,7 @@ final class PresentationDisplayUseCase {
     private var viewFactory: ViewFactoryProtocol?
     private var model: InAppFormData?
 
-    func presentInAppUIModel(inAppUIModel: InAppFormData, onPresented: @escaping () -> Void, onTapAction: @escaping () -> Void, onClose: @escaping () -> Void) {
+    func presentInAppUIModel(inAppUIModel: InAppFormData, onPresented: @escaping () -> Void, onTapAction: @escaping (ContentBackgroundLayerAction?) -> Void, onClose: @escaping () -> Void) {
         guard let window = presentationStrategy?.getWindow() else {
             Logger.common(message: "In-app modal window creating failed")
             return

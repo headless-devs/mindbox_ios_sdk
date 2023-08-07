@@ -20,28 +20,28 @@ final class PresentationActionUseCase {
     private var clickTracked = false
     
     func onTapAction(
-        inApp: InAppMessageUIModel,
+        id: String,
+        value: String,
+        payload: String,
         onTap: @escaping InAppMessageTapAction,
         close: @escaping () -> Void
     ) {
         Logger.common(message: "Presentation completed", level: .debug, category: .inAppMessages)
         if !clickTracked {
             do {
-                try tracker.trackClick(id: inApp.inAppId)
+                try tracker.trackClick(id: id)
                 clickTracked = true
-                Logger.common(message: "Track InApp.Click. Id \(inApp.inAppId)", level: .info, category: .notification)
+                Logger.common(message: "Track InApp.Click. Id \(id)", level: .info, category: .notification)
             } catch {
                 Logger.common(message: "Track InApp.Click failed with error: \(error)", level: .error, category: .notification)
             }
         }
-
-        let redirect = inApp.redirect
         
-        if redirect.redirectUrl.isEmpty && redirect.payload.isEmpty {
+        if value.isEmpty && payload.isEmpty {
             Logger.common(message: "Redirect URL and Payload are empty.", category: .inAppMessages)
         } else {
-            let url = URL(string: redirect.redirectUrl)
-            onTap(url, redirect.payload)
+            let url = URL(string: value)
+            onTap(url, payload)
             close()
         }
     }

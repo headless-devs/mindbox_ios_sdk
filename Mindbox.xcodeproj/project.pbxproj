@@ -339,6 +339,7 @@
 		F331DC7A2A7C544E00222120 /* ContentElementGravity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC792A7C544E00222120 /* ContentElementGravity.swift */; };
 		F331DC7D2A7D0A3900222120 /* ElementFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC7C2A7D0A3900222120 /* ElementFactory.swift */; };
 		F331DC7F2A7D0C1E00222120 /* CloseButtonElementFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC7E2A7D0C1E00222120 /* CloseButtonElementFactory.swift */; };
+		F331DC822A7D122200222120 /* LayerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F331DC812A7D122200222120 /* LayerFactory.swift */; };
 		F3482F172A65DBB7002A41EC /* MindboxURLHandlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F162A65DBB7002A41EC /* MindboxURLHandlerDelegate.swift */; };
 		F3482F192A65DBBD002A41EC /* MindboxPayloadCopierDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F182A65DBBD002A41EC /* MindboxPayloadCopierDelegate.swift */; };
 		F3482F1B2A65DC01002A41EC /* DefaultInappMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3482F1A2A65DC01002A41EC /* DefaultInappMessageDelegate.swift */; };
@@ -783,6 +784,7 @@
 		F331DC792A7C544E00222120 /* ContentElementGravity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentElementGravity.swift; sourceTree = "<group>"; };
 		F331DC7C2A7D0A3900222120 /* ElementFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementFactory.swift; sourceTree = "<group>"; };
 		F331DC7E2A7D0C1E00222120 /* CloseButtonElementFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonElementFactory.swift; sourceTree = "<group>"; };
+		F331DC812A7D122200222120 /* LayerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerFactory.swift; sourceTree = "<group>"; };
 		F3482F162A65DBB7002A41EC /* MindboxURLHandlerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindboxURLHandlerDelegate.swift; sourceTree = "<group>"; };
 		F3482F182A65DBBD002A41EC /* MindboxPayloadCopierDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindboxPayloadCopierDelegate.swift; sourceTree = "<group>"; };
 		F3482F1A2A65DC01002A41EC /* DefaultInappMessageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInappMessageDelegate.swift; sourceTree = "<group>"; };
@@ -2151,6 +2153,14 @@
 			path = ElementFactory;
 			sourceTree = "<group>";
 		};
+		F331DC802A7D121A00222120 /* LayersFactory */ = {
+			isa = PBXGroup;
+			children = (
+				F331DC812A7D122200222120 /* LayerFactory.swift */,
+			);
+			path = LayersFactory;
+			sourceTree = "<group>";
+		};
 		F3482F142A65DBA0002A41EC /* InappMessagesDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -2176,6 +2186,7 @@
 		F37613C12A669295009F2EE4 /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				F331DC802A7D121A00222120 /* LayersFactory */,
 				F331DC7B2A7D0A3200222120 /* ElementFactory */,
 				F30C6EF72A73B0EE0092B8BF /* CrossView.swift */,
 				F30C6EF52A73B0DD0092B8BF /* InAppImageOnlyView.swift */,
@@ -2664,6 +2675,7 @@
 			files = (
 				F37613CF2A669696009F2EE4 /* PresentationActionUseCase.swift in Sources */,
 				847F581725C8981F00147A9A /* HTTPURLResponseStatusCodeValidator.swift in Sources */,
+				F331DC822A7D122200222120 /* LayerFactory.swift in Sources */,
 				33072F442664CC6C001F1AB2 /* IssuedPointOfContactResponse.swift in Sources */,
 				A17958762978AEC600609E91 /* OrTargetingChecker.swift in Sources */,
 				334F3AE1264C199900A6AC00 /* PromoCodeRequest.swift in Sources */,

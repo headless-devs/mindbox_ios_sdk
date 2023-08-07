@@ -14,7 +14,7 @@ class ModalViewFactory: ViewFactoryProtocol {
     
     func create(inAppUIModel: InAppFormData,
                 onPresented: @escaping () -> Void,
-                onTapAction: @escaping () -> Void,
+                onTapAction: @escaping (ContentBackgroundLayerAction?) -> Void,
                 onClose: @escaping () -> Void) -> UIViewController {
         let viewController = ModalViewController(inAppUIModel: inAppUIModel,
                                                         onPresented: onPresented,

@@ -72,14 +72,25 @@ final class InAppPresentationManager: InAppPresentationManagerProtocol {
             self?.displayUseCase.presentInAppUIModel(
                 inAppUIModel: inAppFormData,
                 onPresented: onPresented,
-                onTapAction: { [weak self] in
-                    print("")
-//                    self?.actionUseCase.onTapAction(
-//                        inApp: inAppFormData,
-//                        onTap: onTapAction,
-//                        close: {
-//                            self?.displayUseCase.dismissInAppUIModel(onClose: onPresentationCompleted)
-//                        })
+                onTapAction: { [weak self] action in
+                    guard let action = action else {
+                        return
+                    }
+                    
+                    switch action.type {
+                    case .redirectUrl:
+                        if let value = action.value, let payload = action.intentPayload {
+                            self?.actionUseCase.onTapAction(id: inAppFormData.inAppId,
+                                                            value: value,
+                                                            payload: payload,
+                                                            onTap: onTapAction,
+                                                            close: {
+                                self?.displayUseCase.dismissInAppUIModel(onClose: onPresentationCompleted)
+                            })
+                        }
+                    case .unknown:
+                        break
+                    }
                 },
                 onClose: {
                     self?.displayUseCase.dismissInAppUIModel(onClose: onPresentationCompleted)

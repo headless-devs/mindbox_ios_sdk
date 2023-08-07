@@ -11,15 +11,18 @@ final class InAppImageOnlyView: UIView {
     var onClose: (() -> Void)?
     let imageView = UIImageView()
     let image: UIImage?
+    let action: ContentBackgroundLayerAction?
 
-    init(image: UIImage) {
+    init(image: UIImage, action: ContentBackgroundLayerAction?) {
         self.image = image
+        self.action = action
         super.init(frame: .zero)
         customInit()
     }
 
     required init?(coder: NSCoder) {
         self.image = nil
+        self.action = nil
         super.init(coder: coder)
         customInit()
     }

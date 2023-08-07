@@ -12,6 +12,6 @@ import Foundation
 protocol ViewFactoryProtocol {
     func create(inAppUIModel: InAppFormData,
                 onPresented: @escaping () -> Void,
-                onTapAction: @escaping () -> Void,
+                onTapAction: @escaping (ContentBackgroundLayerAction?) -> Void,
                 onClose: @escaping () -> Void) -> UIViewController
 }
