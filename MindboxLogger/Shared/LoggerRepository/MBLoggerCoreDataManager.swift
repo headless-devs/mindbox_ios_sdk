@@ -145,10 +145,9 @@ public class MBLoggerCoreDataManager {
             }
 
             try saveEvent(withContext: context)
-            queue.async {
-                Logger.common(message: "10%  logs has been deleted", level: .debug, category: .general)
-            }
         }
+        
+        Logger.common(message: "10%  logs has been deleted", level: .debug, category: .general)
     }
     
     public func deleteAll() throws {
