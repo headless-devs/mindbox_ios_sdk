@@ -68,7 +68,7 @@ class MBDatabaseRepository {
 
     // MARK: - CRUD operations
     func create(event: Event) throws {
-        try context.performAndWait {
+        try context.customPerformAndWait {
             let entity = CDEvent(context: context)
             entity.transactionId = event.transactionId
             entity.timestamp = Date().timeIntervalSince1970
@@ -80,7 +80,7 @@ class MBDatabaseRepository {
     }
     
     func read(by transactionId: String) throws -> CDEvent? {
-        try context.performAndWait {
+        try context.customPerformAndWait {
             Logger.common(message: "Attempting to read event with Transaction ID: \(transactionId)", level: .default, category: .database)
             let request: NSFetchRequest<CDEvent> = CDEvent.fetchRequest(by: transactionId)
             guard let entity = try findEvent(by: request) else {
@@ -93,7 +93,7 @@ class MBDatabaseRepository {
     }
     
     func update(event: Event) throws {
-        try context.performAndWait {
+        try context.customPerformAndWait {
             Logger.common(message: "Attempting to update event with Transaction ID: \(event.transactionId)", level: .default, category: .database)
             let request: NSFetchRequest<CDEvent> = CDEvent.fetchRequest(by: event.transactionId)
             guard let entity = try findEvent(by: request) else {
@@ -106,7 +106,7 @@ class MBDatabaseRepository {
     }
     
     func delete(event: Event) throws {
-        try context.performAndWait {
+        try context.customPerformAndWait {
             Logger.common(message: "Attempting to delete event with Transaction ID: \(event.transactionId)", level: .default, category: .database)
             let request = CDEvent.fetchRequest(by: event.transactionId)
             guard let entity = try findEvent(by: request) else {
@@ -119,7 +119,7 @@ class MBDatabaseRepository {
     }
     
     func query(fetchLimit: Int, retryDeadline: TimeInterval = 60) throws ->  [Event] {
-        try context.performAndWait {
+        try context.customPerformAndWait {
             Logger.common(message: "Quering events with fetchLimit: \(fetchLimit)", level: .info, category: .database)
             let request: NSFetchRequest<CDEvent> = CDEvent.fetchRequestForSend(lifeLimitDate: lifeLimitDate, retryDeadLine: retryDeadline)
             request.fetchLimit = fetchLimit
@@ -149,7 +149,7 @@ class MBDatabaseRepository {
     func countDeprecatedEvents() throws -> Int {
         let context = persistentContainer.newBackgroundContext()
         let request: NSFetchRequest<CDEvent> = CDEvent.deprecatedEventsFetchRequest(lifeLimitDate: lifeLimitDate)
-        return try context.performAndWait {
+        return try context.customPerformAndWait {
             do {
                 let count = try context.count(for: request)
                 Logger.common(message: "Total deprecated events: \(count)", level: .default, category: .database)
@@ -166,7 +166,7 @@ class MBDatabaseRepository {
         let eraseRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         infoUpdateVersion = nil
         installVersion = nil
-        try context.performAndWait {
+        try context.customPerformAndWait {
             try context.execute(eraseRequest)
             try saveEvent(withContext: context)
             try countEvents()
@@ -176,7 +176,7 @@ class MBDatabaseRepository {
     @discardableResult
     func countEvents() throws -> Int {
         let request: NSFetchRequest<CDEvent> = CDEvent.countEventsFetchRequest()
-        return try context.performAndWait {
+        return try context.customPerformAndWait {
             Logger.common(message: "Counting total events", level: .default, category: .database)
             do {
                 let count = try context.count(for: request)
@@ -204,7 +204,7 @@ class MBDatabaseRepository {
     }
 
     private func delete(by request: NSFetchRequest<CDEvent>, withContext context: NSManagedObjectContext) throws {
-        try context.performAndWait {
+        try context.customPerformAndWait {
             Logger.common(message: "Searching for events to remove", level: .default, category: .database)
 
             let events = try context.fetch(request)
@@ -273,7 +273,7 @@ private extension MBDatabaseRepository {
         store.metadata[key.rawValue] = value
         persistentContainer.persistentStoreCoordinator.setMetadata(store.metadata, for: store)
         do {
-            try context.performAndWait {
+            try context.customPerformAndWait {
                 try saveContext(context)
                 Logger.common(message: "Successfully saved metadata for key: \(key.rawValue), Value: \(String(describing: value))", level: .default, category: .database)
             }
