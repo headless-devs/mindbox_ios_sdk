@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 public class MBLoggerCoreDataManager {
     public static let shared = MBLoggerCoreDataManager()
@@ -18,7 +19,10 @@ public class MBLoggerCoreDataManager {
         static let operationLimitBeforeNeedToDelete = 20
     }
     
-    private let queue = DispatchQueue(label: "com.Mindbox.loggerManager", qos: .utility)
+    private var observesSuspension: Bool = false
+    private var suspendedLogs: [LogMessage] = []
+
+    
     private var persistentStoreDescription: NSPersistentStoreDescription?
     private var writeCount = 0 {
         didSet {
@@ -26,6 +30,11 @@ public class MBLoggerCoreDataManager {
                 writeCount = 0
             }
         }
+    }
+    
+    init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 
     lazy var persistentContainer: MBPersistentContainer = {
@@ -69,6 +78,22 @@ public class MBLoggerCoreDataManager {
     
     // MARK: - CRUD Operations
     public func create(message: String, timestamp: Date) throws {
+        if observesSuspension {
+            suspendedLogs.append(LogMessage(timestamp: timestamp, message: message))
+            return
+        }
+        
+        if !suspendedLogs.isEmpty {
+            for log in suspendedLogs {
+                try actualCreate(message: log.message, timestamp: log.timestamp)
+            }
+            suspendedLogs.removeAll()
+        }
+        
+        try actualCreate(message: message, timestamp: timestamp)
+    }
+
+    private func actualCreate(message: String, timestamp: Date) throws {
         let isTimeToDelete = writeCount == 0
         writeCount += 1
         if isTimeToDelete && getDBFileSize() > Constants.dbSizeLimitKB {
@@ -132,6 +157,10 @@ public class MBLoggerCoreDataManager {
     }
     
     public func delete() throws {
+        if observesSuspension {
+            return
+        }
+        
         try context.customPerformAndWait {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: Constants.model)
             let count = try context.count(for: request)
@@ -151,6 +180,10 @@ public class MBLoggerCoreDataManager {
     }
     
     public func deleteAll() throws {
+        if observesSuspension {
+            return
+        }
+        
         try context.customPerformAndWait {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: Constants.model)
             request.includesPropertyValues = false
@@ -189,5 +222,13 @@ private extension MBLoggerCoreDataManager {
         }
         let size = url.fileSize / 1024 // Bytes to Kilobytes
         return Int(size)
+    }
+    
+    @objc private func appDidEnterBackground() {
+        observesSuspension = true
+    }
+
+    @objc private func appWillEnterForeground() {
+        observesSuspension = false
     }
 }

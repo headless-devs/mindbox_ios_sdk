@@ -71,10 +71,12 @@ open class MindboxAppDelegate: NSObject, UNUserNotificationCenterDelegate, UIApp
     }
     
     open func applicationWillEnterForeground(_ application: UIApplication) {
+        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil)
         Logger.common(message: "Enter foreground", level: .info, category: .general)
     }
     
     open func applicationDidEnterBackground(_ application: UIApplication) {
+        NotificationCenter.default.post(name: UIApplication.didEnterBackgroundNotification, object: nil)
         Logger.common(message: "Enter background", level: .info, category: .general)
     }
     
