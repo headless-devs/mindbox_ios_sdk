@@ -6,7 +6,6 @@
 //  Copyright © 2023 Mikhail Barilov. All rights reserved.
 //
 
-import Foundation
 import CoreData
 import UIKit
 
@@ -15,15 +14,11 @@ public class MBLoggerCoreDataManager {
     
     private enum Constants {
         static let model = "CDLogMessage"
-        static let dbSizeLimitKB: Int = 10_000
+        static let dbSizeLimitKB: Int = 10_00
         static let operationLimitBeforeNeedToDelete = 20
     }
     
-    private var observesSuspension: Bool = false
     private var suspendedLogs: [LogMessage] = []
-
-    
-    private var persistentStoreDescription: NSPersistentStoreDescription?
     private var writeCount = 0 {
         didSet {
             if writeCount > Constants.operationLimitBeforeNeedToDelete {
@@ -32,12 +27,55 @@ public class MBLoggerCoreDataManager {
         }
     }
     
+    lazy var persistentContainer: NSPersistentContainer = {
+        return createNewPersistentContainer()
+    }()
+    
+    private lazy var context: NSManagedObjectContext = {
+        let context = persistentContainer.newBackgroundContext()
+        context.automaticallyMergesChangesFromParent = true
+        context.mergePolicy = NSMergePolicy(merge: .mergeByPropertyStoreTrumpMergePolicyType)
+        return context
+    }()
+    
     init() {
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
-
-    lazy var persistentContainer: MBPersistentContainer = {
+    
+    @objc private func appDidEnterBackground() {
+        if performAndWaitSemaphore.wait(timeout: .now()) == .success {
+            // Освобождение persistentStore
+            if let store = self.context.persistentStoreCoordinator?.persistentStores.first {
+                do {
+                    try self.context.persistentStoreCoordinator?.remove(store)
+                } catch {
+                    // Handle error, for example, log it
+                }
+            }
+            performAndWaitSemaphore.signal()
+        }
+    }
+    
+    @objc private func appWillEnterForeground() {
+        self.persistentContainer = createNewPersistentContainer()
+        self.context = self.persistentContainer.newBackgroundContext()
+//        flushTempLogBuffer()
+        suspendedLogs.removeAll() // TODO: - remove this line later
+    }
+    
+    private func flushTempLogBuffer() {
+        for log in suspendedLogs {
+            do {
+                try create(message: log.message, timestamp: log.timestamp)
+            } catch {
+                
+            }
+        }
+        suspendedLogs.removeAll()
+    }
+    
+    private func createNewPersistentContainer() -> NSPersistentContainer {
         MBPersistentContainer.applicationGroupIdentifier = MBLoggerUtilitiesFetcher().applicationGroupIdentifier
         
         #if SWIFT_PACKAGE
@@ -59,41 +97,39 @@ public class MBLoggerCoreDataManager {
         
         let storeURL = FileManager.storeURL(for: MBLoggerUtilitiesFetcher().applicationGroupIdentifier, databaseName: Constants.model)
         let storeDescription = NSPersistentStoreDescription(url: storeURL)
-        storeDescription.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode") // Disabling WAL journal
+        storeDescription.setValue("DELETE" as NSObject, forPragmaNamed: "journal_mode")
         container.persistentStoreDescriptions = [storeDescription]
         container.loadPersistentStores {
             (storeDescription, error) in
         }
 
         return container
-    }()
-
+    }
     
-    private lazy var context: NSManagedObjectContext = {
-        let context = persistentContainer.newBackgroundContext()
-        context.automaticallyMergesChangesFromParent = true
-        context.mergePolicy = NSMergePolicy(merge: .mergeByPropertyStoreTrumpMergePolicyType)
-        return context
-    }()
+    private let performAndWaitSemaphore = DispatchSemaphore(value: 1)
     
-    // MARK: - CRUD Operations
     public func create(message: String, timestamp: Date) throws {
-        if observesSuspension {
+        guard let _ = self.context.persistentStoreCoordinator?.persistentStores.first else {
             suspendedLogs.append(LogMessage(timestamp: timestamp, message: message))
             return
         }
         
         if !suspendedLogs.isEmpty {
-            for log in suspendedLogs {
-                try actualCreate(message: log.message, timestamp: log.timestamp)
+            for i in suspendedLogs {
+                try actualLog(message: i.message, timestamp: i.timestamp)
             }
+            
             suspendedLogs.removeAll()
         }
         
-        try actualCreate(message: message, timestamp: timestamp)
+        try actualLog(message: message, timestamp: timestamp)
     }
-
-    private func actualCreate(message: String, timestamp: Date) throws {
+    
+    private func actualLog(message: String, timestamp: Date) throws {
+        performAndWaitSemaphore.wait()
+        defer {
+            performAndWaitSemaphore.signal()
+        }
         let isTimeToDelete = writeCount == 0
         writeCount += 1
         if isTimeToDelete && getDBFileSize() > Constants.dbSizeLimitKB {
@@ -102,13 +138,17 @@ public class MBLoggerCoreDataManager {
         
         try self.context.customPerformAndWait {
             let entity = CDLogMessage(context: self.context)
-            entity.message = message
-            entity.timestamp = timestamp
-            try self.saveEvent(withContext: self.context)
+            if let _ = self.context.persistentStoreCoordinator?.persistentStores.first {
+                entity.message = message
+                entity.timestamp = timestamp
+                try self.context.save()
+            } else {
+                suspendedLogs.append(LogMessage(timestamp: timestamp, message: message))
+            }
         }
     }
     
-    public func getFirstLog() throws -> LogMessage? {
+    public func getFirstLog() throws -> LogMessage? { 
         try context.customPerformAndWait {
             let fetchRequest = NSFetchRequest<CDLogMessage>(entityName: Constants.model)
             fetchRequest.predicate = NSPredicate(value: true)
@@ -119,7 +159,6 @@ public class MBLoggerCoreDataManager {
             if let first = results.first {
                 logMessage = LogMessage(timestamp: first.timestamp, message: first.message)
             }
-            
             return logMessage
         }
     }
@@ -135,7 +174,6 @@ public class MBLoggerCoreDataManager {
             if let last = results.last {
                 logMessage = LogMessage(timestamp: last.timestamp, message: last.message)
             }
-            
             return logMessage
         }
     }
@@ -151,68 +189,44 @@ public class MBLoggerCoreDataManager {
             logs.forEach {
                 fetchedLogs.append(LogMessage(timestamp: $0.timestamp, message: $0.message))
             }
-
             return fetchedLogs
         }
     }
     
     public func delete() throws {
-        if observesSuspension {
-            return
-        }
-        
         try context.customPerformAndWait {
+            guard let _ = self.context.persistentStoreCoordinator?.persistentStores.first else {
+                return
+            }
+            
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: Constants.model)
             let count = try context.count(for: request)
-            let limit: Double = (Double(count) * 0.1).rounded() // 10% percent of all records should be removed
+            let limit: Double = (Double(count) * 0.1).rounded()
             request.fetchLimit = Int(limit)
             request.includesPropertyValues = false
             let results = try context.fetch(request)
-
             results.compactMap { $0 as? NSManagedObject }.forEach {
                 context.delete($0)
             }
-
-            try saveEvent(withContext: context)
+            try context.save()
         }
         
         Logger.common(message: "10%  logs has been deleted", level: .debug, category: .general)
     }
     
     public func deleteAll() throws {
-        if observesSuspension {
-            return
-        }
-        
         try context.customPerformAndWait {
+            guard let _ = self.context.persistentStoreCoordinator?.persistentStores.first else {
+                return
+            }
+            
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: Constants.model)
             request.includesPropertyValues = false
             let results = try context.fetch(request)
             results.compactMap { $0 as? NSManagedObject }.forEach {
                 context.delete($0)
             }
-            try saveEvent(withContext: context)
-        }
-    }
-}
-
-private extension MBLoggerCoreDataManager {
-    private func saveEvent(withContext context: NSManagedObjectContext) throws {
-        guard context.hasChanges else { return }
-        try saveContext(context)
-    }
-    
-    private func saveContext(_ context: NSManagedObjectContext) throws {
-        do {
             try context.save()
-        } catch {
-            switch error {
-            case let error as NSError where error.domain == NSSQLiteErrorDomain && error.code == 13:
-                fallthrough
-            default:
-                context.rollback()
-            }
-            throw error
         }
     }
     
@@ -220,15 +234,7 @@ private extension MBLoggerCoreDataManager {
         guard let url = context.persistentStoreCoordinator?.persistentStores.first?.url else {
             return 0
         }
-        let size = url.fileSize / 1024 // Bytes to Kilobytes
+        let size = url.fileSize / 1024
         return Int(size)
-    }
-    
-    @objc private func appDidEnterBackground() {
-        observesSuspension = true
-    }
-
-    @objc private func appWillEnterForeground() {
-        observesSuspension = false
     }
 }
