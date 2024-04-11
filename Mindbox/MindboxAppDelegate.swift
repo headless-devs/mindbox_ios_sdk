@@ -57,6 +57,8 @@ open class MindboxAppDelegate: NSObject, UNUserNotificationCenterDelegate, UIApp
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
+        Logger.common(message: "Function: \(#function)", category: .notification)
+        Logger.common(message: "response: \(response)", category: .notification)
         Mindbox.shared.pushClicked(response: response)
         Mindbox.shared.track(.push(response))
         completionHandler()
@@ -67,6 +69,8 @@ open class MindboxAppDelegate: NSObject, UNUserNotificationCenterDelegate, UIApp
         didReceiveRemoteNotification userInfo: [AnyHashable: Any],
         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
     ) {
+        Logger.common(message: "Function: \(#function)", category: .notification)
+        Logger.common(message: "userInfo: \(userInfo)", category: .notification)
         Mindbox.shared.application(application, performFetchWithCompletionHandler: completionHandler)
     }
     
