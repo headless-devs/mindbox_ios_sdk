@@ -69,8 +69,7 @@ open class MindboxAppDelegate: NSObject, UNUserNotificationCenterDelegate, UIApp
         didReceiveRemoteNotification userInfo: [AnyHashable: Any],
         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
     ) {
-        Logger.common(message: "Function: \(#function)", category: .notification)
-        Logger.common(message: "Application state: \(application.applicationState)")
+        Logger.common(message: "Function: \(#function), app state: \(application.applicationState)", category: .notification)
         Logger.common(message: "userInfo: \(userInfo)", category: .notification)
         Mindbox.shared.application(application, performFetchWithCompletionHandler: completionHandler)
     }
