@@ -70,6 +70,7 @@ open class MindboxAppDelegate: NSObject, UNUserNotificationCenterDelegate, UIApp
         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void
     ) {
         Logger.common(message: "Function: \(#function)", category: .notification)
+        Logger.common(message: "Application state: \(application.applicationState)")
         Logger.common(message: "userInfo: \(userInfo)", category: .notification)
         Mindbox.shared.application(application, performFetchWithCompletionHandler: completionHandler)
     }
