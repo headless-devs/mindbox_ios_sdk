@@ -12,11 +12,12 @@ import MindboxLogger
 class InappFrequencyValidator: Validator {
     typealias T = InApp
     
-    let persistenceStorage: PersistenceStorage
+//    let persistenceStorage: PersistenceStorage
+    let persistenceStorage: PersistenceStorage = container.resolveOrFail(PersistenceStorage.self)
     
-    init(persistenceStorage: PersistenceStorage) {
-        self.persistenceStorage = persistenceStorage
-    }
+//    init(persistenceStorage: PersistenceStorage) {
+//        self.persistenceStorage = persistenceStorage
+//    }
     
     func isValid(item: InApp) -> Bool {
         guard let frequency = item.frequency else {

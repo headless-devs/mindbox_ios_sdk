@@ -10,6 +10,19 @@ import Foundation
 
 extension Container {
     func registerUtilitiesServices() -> Self {
+        register(UtilitiesFetcher.self) {
+            MBUtilitiesFetcher()
+        }
+        
+        register(PersistenceStorage.self) {
+            let uf = self.resolveOrFail(UtilitiesFetcher.self)
+            return MBPersistenceStorage(defaults: UserDefaults(suiteName: uf.applicationGroupIdentifier)!)
+        }
+        
+        register(InappFrequencyValidator.self) {
+            InappFrequencyValidator()
+        }
+        
         register(ABTestDeviceMixer.self) {
             ABTestDeviceMixer()
         }

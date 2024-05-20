@@ -11,7 +11,7 @@ import Foundation
 class Container {
     private var services = [String: () -> Any]()
     private var singletons = [String: Any]()
-    private let queue = DispatchQueue(label: "com.MBDependencyContainer.queue")
+    private let queue = DispatchQueue(label: "com.MBDependencyContainer.queue", attributes: .concurrent)
 
     init() {}
 

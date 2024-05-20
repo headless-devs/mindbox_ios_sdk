@@ -33,7 +33,7 @@ final class DependencyProvider: DependencyContainer {
     var inAppConfigurationDataFacade: InAppConfigurationDataFacadeProtocol
     var userVisitManager: UserVisitManagerProtocol
     var ttlValidationService: TTLValidationProtocol
-    var frequencyValidator: InappFrequencyValidator
+//    var frequencyValidator: InappFrequencyValidator
 
     init() throws {
         utilitiesFetcher = MBUtilitiesFetcher()
@@ -84,11 +84,13 @@ final class DependencyProvider: DependencyContainer {
                                                          elementsFilter: elementsFilterService,
                                                          contentPositionFilter: contentPositionFilterService)
 
-        frequencyValidator = InappFrequencyValidator(persistenceStorage: persistenceStorage)
+//        frequencyValidator = InappFrequencyValidator(persistenceStorage: persistenceStorage)
         inappFilterService = InappsFilterService(persistenceStorage: persistenceStorage,
                                                  variantsFilter: variantsFilterService,
-                                                 sdkVersionValidator: sdkVersionValidator, 
-                                                 frequencyValidator: frequencyValidator)
+                                                 sdkVersionValidator: sdkVersionValidator
+//                                                 ,
+//                                                 frequencyValidator: frequencyValidator
+        )
         
         ttlValidationService = TTLValidationService(persistenceStorage: persistenceStorage)
         inAppConfigurationDataFacade = InAppConfigurationDataFacade(geoService: geoService,

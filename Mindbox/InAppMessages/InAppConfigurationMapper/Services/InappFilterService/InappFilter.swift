@@ -24,13 +24,20 @@ final class InappsFilterService: InappFilterProtocol {
     private let abTestDeviceMixer = container.resolveOrFail(ABTestDeviceMixer.self)
     private let variantsFilter: VariantFilterProtocol
     private let sdkVersionValidator: SDKVersionValidator
-    private let frequencyValidator: InappFrequencyValidator
+//    private let frequencyValidator: InappFrequencyValidator
+    private let frequencyValidator = container.resolveOrFail(InappFrequencyValidator.self)
 
-    init(persistenceStorage: PersistenceStorage, variantsFilter: VariantFilterProtocol, sdkVersionValidator: SDKVersionValidator, frequencyValidator: InappFrequencyValidator) {
+    init(
+        persistenceStorage: PersistenceStorage,
+        variantsFilter: VariantFilterProtocol,
+        sdkVersionValidator: SDKVersionValidator
+//        ,
+//        frequencyValidator: InappFrequencyValidator
+    ) {
         self.persistenceStorage = persistenceStorage
         self.variantsFilter = variantsFilter
         self.sdkVersionValidator = sdkVersionValidator
-        self.frequencyValidator = frequencyValidator
+//        self.frequencyValidator = frequencyValidator
     }
     
     func filter(inapps: [InAppDTO]?, abTests: [ABTest]?) -> [InApp] {
