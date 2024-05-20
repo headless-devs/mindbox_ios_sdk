@@ -17,11 +17,11 @@ class Container {
 
     func register<T>(_ serviceType: T.Type, factory: @escaping () -> T, isSingleton: Bool = false) {
         let key = String(describing: serviceType)
-        queue.sync {
+        queue.async(flags: .barrier) {
             if isSingleton {
-                singletons[key] = factory()
+                self.singletons[key] = factory()
             } else {
-                services[key] = factory
+                self.services[key] = factory
             }
         }
     }
