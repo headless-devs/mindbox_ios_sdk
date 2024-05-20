@@ -28,23 +28,23 @@ enum MBInject {
         didSet {
             switch mode {
             case .standard:
-                depContainer = MBInject.buildDefaulContainer()
+                depContainer = MBInject.buildDefaultContainer()
             case .stubbed:
                 depContainer = MBInject.stubContainer
             }
         }
     }
 
-    static var depContainer: Container = MBInject.buildDefaulContainer()
+    static var depContainer: Container = MBInject.buildDefaultContainer()
 
-    fileprivate static func buildDefaulContainer() -> Container {
+    fileprivate static func buildDefaultContainer() -> Container {
         let container = Container()
         return container
             .registerUtilitiesServices()
     }
 
     fileprivate static var stubContainer: Container {
-        let container = MBInject.buildDefaulContainer()
+        let container = MBInject.buildDefaultContainer()
         return container
             .registerStubUtilitiesServices()
     }
