@@ -103,7 +103,7 @@ extension String {
         let daysCorrected = days.isEmpty ? "0" : days
         let fractionCorrected = fraction.isEmpty ? "0" : fraction
         
-        let daysInSeconds = NSDecimalNumber(string: daysCorrected).multiplying(by: 86400)
+        let daysInSeconds = NSDecimalNumber(string: daysCorrected).multiplying(by: 86_400)
         let hoursInSeconds = NSDecimalNumber(string: hours).multiplying(by: 3600)
         let minutesInSeconds = NSDecimalNumber(string: minutes).multiplying(by: 60)
         let secondsInSeconds = NSDecimalNumber(string: seconds)
@@ -123,10 +123,6 @@ extension String {
         }
         
         let millis = roundedMilliseconds.int64Value
-        
-        if sign == "-" && millis == 0 {
-            return 0
-        }
         
         return sign == "-" ? -millis : millis
     }
