@@ -44,6 +44,20 @@ public class MindboxNotificationService: NSObject {
             Logger.common(message: "MindboxNotificationService: Failed to get bestAttemptContent. bestAttemptContent: \(String(describing: bestAttemptContent))", level: .error, category: .notification)
             return
         }
+        
+        var tagger = NSLinguisticTagger(tagSchemes: [.language], options: 0)
+        tagger.string = bestAttemptContent.body
+        let language: String?
+        if #available(iOSApplicationExtension 11.0, *) {
+            language = tagger.dominantLanguage
+        } else {
+            language = "en"
+        }
+        
+        if language == "ar" {
+            bestAttemptContent.title = "\u{202A}\(bestAttemptContent.title)"
+            bestAttemptContent.body = "\u{202A}\(bestAttemptContent.body)"
+        }
 
         pushDelivered(request)
 
