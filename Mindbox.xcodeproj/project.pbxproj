@@ -116,6 +116,7 @@
 		33E42E5C268323E60046CBCB /* CashdeskRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E42E5B268323E60046CBCB /* CashdeskRequest.swift */; };
 		33EBF0B0264E6283002A35D5 /* MBSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EBF0AF264E6283002A35D5 /* MBSessionManager.swift */; };
 		47D63E2B2C2EABDF0055E7D8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F3EC93BA2AF105DA0030D107 /* PrivacyInfo.xcprivacy */; };
+		47ED58D12C537E8D007E7902 /* MigrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ED58D02C537E8D007E7902 /* MigrationManager.swift */; };
 		6F1EAA16266A670E007A335B /* ProductListItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1EAA15266A670E007A335B /* ProductListItemsResponse.swift */; };
 		6FDD143B266F7BD900A50C35 /* ProcessingStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDD143A266F7BD900A50C35 /* ProcessingStatusResponse.swift */; };
 		6FDD143D266F7BEB00A50C35 /* ItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDD143C266F7BEB00A50C35 /* ItemResponse.swift */; };
@@ -643,6 +644,7 @@
 		33C81EA3264145CD00863380 /* TimerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		33E42E5B268323E60046CBCB /* CashdeskRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashdeskRequest.swift; sourceTree = "<group>"; };
 		33EBF0AF264E6283002A35D5 /* MBSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBSessionManager.swift; sourceTree = "<group>"; };
+		47ED58D02C537E8D007E7902 /* MigrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationManager.swift; sourceTree = "<group>"; };
 		6F1EAA15266A670E007A335B /* ProductListItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListItemsResponse.swift; sourceTree = "<group>"; };
 		6FDD143A266F7BD900A50C35 /* ProcessingStatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingStatusResponse.swift; sourceTree = "<group>"; };
 		6FDD143C266F7BEB00A50C35 /* ItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemResponse.swift; sourceTree = "<group>"; };
@@ -1195,6 +1197,7 @@
 		31A20D4A25B6E09900AAA0A3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				47ED58CF2C537E77007E7902 /* Migrations */,
 				F3D818AE2A3885A40002957C /* ABTestDeviceMixer */,
 				9B9C952E2921116F00BB29DA /* UUIDDebugService */,
 				33BEE80C2681EB7700993720 /* NotificationDecoder.swift */,
@@ -1410,6 +1413,14 @@
 				D2F7E2492BADC2AB00B24BB8 /* SessionManager.swift */,
 			);
 			path = SessionManager;
+			sourceTree = "<group>";
+		};
+		47ED58CF2C537E77007E7902 /* Migrations */ = {
+			isa = PBXGroup;
+			children = (
+				47ED58D02C537E8D007E7902 /* MigrationManager.swift */,
+			);
+			path = Migrations;
 			sourceTree = "<group>";
 		};
 		8400429F2614CDED00CA17C5 /* ClickNotificationManager */ = {
@@ -3264,6 +3275,7 @@
 				33072F482664CCBA001F1AB2 /* PoolResponse.swift in Sources */,
 				0A3D045A2BC6803E00E1FC52 /* ImageFormat.swift in Sources */,
 				337C79562656533F0092B580 /* ViewProductRequest.swift in Sources */,
+				47ED58D12C537E8D007E7902 /* MigrationManager.swift in Sources */,
 				6FDD145F266F7CD900A50C35 /* DiscountResponse.swift in Sources */,
 				33072F462664CC9A001F1AB2 /* UsedPointOfContactResponse.swift in Sources */,
 				F397EEB12A44571300D48CEC /* UnknownDecodable.swift in Sources */,

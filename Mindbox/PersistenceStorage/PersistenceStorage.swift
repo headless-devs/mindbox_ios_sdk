@@ -55,4 +55,6 @@ protocol PersistenceStorage: AnyObject {
     var userVisitCount: Int? { get set }
     
     var configDownloadDate: Date? { get set }
+    
+    var sdkVersionCodeForMigrations: Int? { get set }
 }

@@ -187,6 +187,9 @@ class MBPersistenceStorage: PersistenceStorage {
     @UserDefaultsWrapper(key: .imageLoadingMaxTimeInSeconds, defaultValue: nil)
     var imageLoadingMaxTimeInSeconds: Double?
     
+    @UserDefaultsWrapper(key: .sdkVersionCodeMigration, defaultValue: 0)
+    var sdkVersionCodeForMigrations: Int?
+    
     @UserDefaultsWrapper(key: .apnsTokenSaveDate, defaultValue: nil)
     private var apnsTokenSaveDateString: String? {
         didSet {
@@ -311,6 +314,7 @@ extension MBPersistenceStorage {
             case needUpdateInfoOnce = "MBPersistenceStorage-needUpdateInfoOnce"
             case userVisitCount = "MBPersistenceStorage-userVisitCount"
             case configDownloadDate = "MBPersistenceStorage-configDownloadDate"
+            case sdkVersionCodeMigration = "MBPersistenceStorage-sdkVersionCodeMigration"
         }
         
         private let key: Key
